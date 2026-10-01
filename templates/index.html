@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X_UA_Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Log Console</title>
+        <style>
+            table {
+                width: 80%;
+                border-collapse: collapse;
+                margin: 20px auto;
+            }
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Log Messages</h2>
+        <table>
+            <tr>
+                <th>Fecha y Hora</th>
+                <th>Mensaje</th>
+            </tr>
+            {% for record in records %}
+                <tr>
+                    <td>{{ record.date_time}}</td>
+                    <td>{{ record.msg }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
