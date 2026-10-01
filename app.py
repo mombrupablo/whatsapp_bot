@@ -20,11 +20,6 @@ class log(db.Model):
 # Table creation
 with app.app_context():
     db.create_all()
-    test1 = log(msg="Test Message 1")
-    test2 = log(msg="Test Message 2")
-    db.session.add(test1)
-    db.session.add(test2)
-    db.session.commit()
 
 
 @app.route('/')
