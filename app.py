@@ -60,7 +60,7 @@ TOKEN_APPCODE = "PAMCODE"
 #         return response
 
 
-@app.get("/webhook")
+@app.route("/webhook")
 def verify_webhook():
     mode = request.args.get("hub.mode")
     token = request.args.get("hub.verify_token")
