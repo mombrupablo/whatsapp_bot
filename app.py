@@ -46,8 +46,7 @@ def add_log_message(msg):
 
 
 # Token for the configuration of the webhook
-TOKEN_APPCODE = "EAAZAoqXS4wT0BSueVin17y6UJ1sSpQmpaq4z9jh8ukhg6i2ofzWAqZAG4ZCeKCuFNyblR6VjU3UnKeZBMZBbaAUchLeHqUiZBbIJ3D8LPJndOEc8ZA1MXEeZBKX2myHksejgdJ0JJHMQ4DYr41MlCWyapAnVwu2ZCEihZAanTLeFU5O1ZBme8nhR5HH2C0P0IzQ2XTD0yrWp3ni0cROr5AhpKGBV84uoGdcHPdFqaygpx39FACmTM2rmo7oG0NWslcUCFmOalMqzMB6asoLyIXZCtE9GkAZDZD"
-
+TOKEN_APPCODE = "PAMCODE"
 
 @app.route("/webhook", methods=['GET', 'POST'])
 def webhook():
