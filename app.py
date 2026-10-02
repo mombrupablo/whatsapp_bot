@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timezone
-from fastapi import Response
 
 
 app = Flask(__name__)
@@ -68,8 +67,8 @@ def verify_webhook():
     challenge = request.args.get("hub.challenge")
     if mode == "subscribe" and token == "PAMCODE":
         # Retorna una respuesta de texto plano directa
-        return Response(content=challenge, media_type="text/plain")
-    return Response(status_code=403)
+        return str(challenge), 200
+    return 'Invalid verification Token', 403
 
 
 # def verify_token(req):
