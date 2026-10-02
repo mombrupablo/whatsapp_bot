@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timezone
+from fastapi import Response
+
 
 app = Flask(__name__)
 
@@ -48,23 +50,35 @@ def add_log_message(msg):
 # Token for the configuration of the webhook
 TOKEN_APPCODE = "PAMCODE"
 
-@app.route("/webhook", methods=['GET', 'POST'])
-def webhook():
-    if request.method == 'GET':
-        challenge = verify_token(request)
-        return challenge
-    elif request.method == 'POST':
-        response = receive_messages(request)
-        return response
+
+# @app.route("/webhook", methods=['GET', 'POST'])
+# def webhook():
+#     if request.method == 'GET':
+#         challenge = verify_token(request)
+#         return challenge
+#     elif request.method == 'POST':
+#         response = receive_messages(request)
+#         return response
 
 
-def verify_token(req):
-    token = req.args.get("hub.verify_token")
-    challenge = req.args.get("hub.challenge")
-    if token and challenge == TOKEN_APPCODE:
-        return challenge
-    else:
-        return jsonify({"error": "Invalid Token"}), 401
+@app.get("/webhook")
+def verify_webhook():
+    mode = request.args.get("hub.mode")
+    token = request.args.get("hub.verify_token")
+    challenge = request.args.get("hub.challenge")
+    if mode == "subscribe" and token == "PAMCODE":
+        # Retorna una respuesta de texto plano directa
+        return Response(content=challenge, media_type="text/plain")
+    return Response(status_code=403)
+
+
+# def verify_token(req):
+#     token = req.args.get("hub.verify_token")
+#     challenge = req.args.get("hub.challenge")
+#     if token and challenge == TOKEN_APPCODE:
+#         return challenge
+#     else:
+#         return jsonify({"error": "Invalid Token"}), 401
 
 
 def receive_messages(req):
