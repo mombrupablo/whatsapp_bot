@@ -46,8 +46,7 @@ def add_log_message(msg):
 
 
 # Token for the configuration of the webhook
-TOKEN_<app_token> = os.getenv("META_AUTHORIZATION_TOKEN")
-
+TOKEN_<app_token> = "<app_token>"
 
 @app.route("/webhook", methods=['GET', 'POST'])
 def webhook():
