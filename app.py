@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timezone
 
@@ -44,8 +44,33 @@ def add_log_message(msg):
     db.session.add(new_record)
     db.session.commit()
 
+# Token for the configuration of the webhook
+TOKEN_<app_token> = os.getenv("TOKEN_APP_CODE")
 
-# add_log_message(json.dumps("Test_01"))
+@app.route("/webhook", methods=['GET', 'POST'])
+def webhook():
+    if request.method == 'GET':
+        challenge = verify_token(request)
+        return challenge
+    elif request.method == 'POST':
+        response = receive_messages(request)
+        return response
+
+
+def verify_token(req):
+    token = req.args.get("hub.verify_token")
+    challenge = req.args.get("hub.challenge")
+    if token and challenge == TOKEN_<app_token>:
+        return challenge
+    else:
+        return jsonify({"error": "Invalid Token"}), 401
+
+
+def receive_messages(req):
+    request = req.get_json()
+    add_log_message(request)
+    return jsonify({"message": "EVENT_RECEIVED"})
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80, debug=True)
