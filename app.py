@@ -44,8 +44,10 @@ def add_log_message(msg):
     db.session.add(new_record)
     db.session.commit()
 
+
 # Token for the configuration of the webhook
-TOKEN_<app_token> = os.getenv("TOKEN_APP_CODE")
+TOKEN_<app_token> = "<app_token>"
+
 
 @app.route("/webhook", methods=['GET', 'POST'])
 def webhook():
@@ -67,8 +69,8 @@ def verify_token(req):
 
 
 def receive_messages(req):
-    request = req.get_json()
-    add_log_message(request)
+    req = request.get_json()
+    add_log_message(req)
     return jsonify({"message": "EVENT_RECEIVED"})
 
 
