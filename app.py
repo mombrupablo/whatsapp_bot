@@ -68,7 +68,7 @@ def verify_webhook():
     if mode == "subscribe" and token == "PAMCODE":
         # Retorna una respuesta de texto plano directa
         return str(challenge), 200
-    return 'Invalid verification Token {0}'.format(token), 403
+    return 'Invalid verification Token - mode: {0} - token: {1} - challenge: {2}'.format(mode, token, challenge), 403
 
 
 # def verify_token(req):
