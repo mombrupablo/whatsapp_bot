@@ -40,6 +40,8 @@ log_messages = []
 
 # Function to add log messages to the db
 def add_log_message(msg):
+    print(f"******* Inside function add_log_message *******", flush=True)
+    print(f"******* Message: {msg} *******", flush=True)
     log_messages.append(msg)
     new_record = log(msg=msg)
     db.session.add(new_record)
@@ -91,6 +93,7 @@ def webhook():
 
 
 def verify_token(req):
+    print(f"******* Inside function verify_token *******", flush=True)
     token = req.args.get("hub.verify_token")
     challenge = req.args.get("hub.challenge")
     if token and challenge == TOKEN_APPCODE:
@@ -100,7 +103,9 @@ def verify_token(req):
 
 
 def receive_messages(req):
+    print(f"******* Inside function receive_message *******", flush=True)
     req = request.get_json()
+    print(f"******* Req: {req} *******", flush=True)    
     add_log_message(req)
     return jsonify({"message": "EVENT_RECEIVED"})
 
