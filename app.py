@@ -52,8 +52,8 @@ TOKEN_APPCODE = "PAMCODE"
 
 @app.route("/webhook", methods=['GET', 'POST'])
 def webhook():
-    print(f"****************** Inside function webhook ********************")
-    print(f"******** Request Method {request.method}")
+    print(f"****************** Inside function webhook ********************", flush=True)
+    print(f"******** Request Method {request.method}", flush=True)
     if request.method == 'GET':
         challenge = verify_webhook(request)
         return challenge
@@ -64,7 +64,7 @@ def webhook():
 
 @app.route("/webhook")
 def verify_webhook():
-    print("***************** Inside function verify_webhook *******************")
+    print("***************** Inside function verify_webhook *******************", flush=True)
     mode = request.args.get('hub.mode') or request.args.get('hub_mode')
     token = request.args.get("hub.verify_token") or request.args.get("hub_verify_token")
     challenge = request.args.get('hub.challenge') or request.args.get('hub_challenge')
@@ -90,5 +90,5 @@ def receive_messages(req):
 
 
 if __name__ == "__main__":
-    print("****************** Starting Program ********************")
+    print("****************** Starting Program ********************", flush=True)
     app.run(host="0.0.0.0", port=80, debug=True)
