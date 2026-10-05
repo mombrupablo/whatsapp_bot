@@ -91,4 +91,5 @@ def receive_messages(req):
 
 
 if __name__ == "__main__":
+    logging.info("****************** Starting Program ********************")
     app.run(host="0.0.0.0", port=80, debug=True)
