@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timezone
+import logging
 
 
 app = Flask(__name__)
@@ -62,6 +63,7 @@ TOKEN_APPCODE = "PAMCODE"
 
 @app.route("/webhook")
 def verify_webhook():
+    logging.info(request)
     mode = request.args.get('hub.mode') or request.args.get('hub_mode')
     token = request.args.get("hub.verify_token") or request.args.get("hub_verify_token")
     challenge = request.args.get('hub.challenge') or request.args.get('hub_challenge')
