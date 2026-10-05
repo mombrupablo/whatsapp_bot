@@ -66,7 +66,7 @@ def webhook():
         print("******* In GET *******", flush=True)
         # response = request.get(URL_WEBHOOK, params=parameters)
         # print("******* Response {response} *******", flush=True)
-        challenge = verify_webhook(request)
+        challenge = verify_token(request)
         return challenge
     elif request.method == 'POST':
         print("******* In POST *******", flush=True)        
@@ -74,29 +74,29 @@ def webhook():
         return response
 
 
-# @app.route("/webhook")
-def verify_webhook(request):
-    print("******* Inside function verify_webhook *******", flush=True)
-    print(f"******* Request: {request} *******", flush=True)
-    mode = request.args.get('hub.mode')
-    print(f"******* Mode: {mode} *******", flush=True)
-    token = request.args.get("hub.verify_token")
-    print(f"******* Token: {token} *******", flush=True)
-    challenge = request.args.get('hub.challenge')
-    print(f"******* Challenge: {challenge} *******", flush=True)
-    if mode == "subscribe" and token == "PAMCODE":
-        # Retorna una respuesta de texto plano directa
-        return str(challenge), 200
-    return f'Invalid verification Token - mode: {mode} - token: {token} - challenge: {challenge} - request: {request}', 403
+# # @app.route("/webhook")
+# def verify_webhook(request):
+#     print("******* Inside function verify_webhook *******", flush=True)
+#     print(f"******* Request: {request} *******", flush=True)
+#     mode = request.args.get('hub.mode')
+#     print(f"******* Mode: {mode} *******", flush=True)
+#     token = request.args.get("hub.verify_token")
+#     print(f"******* Token: {token} *******", flush=True)
+#     challenge = request.args.get('hub.challenge')
+#     print(f"******* Challenge: {challenge} *******", flush=True)
+#     if mode == "subscribe" and token == "PAMCODE":
+#         # Retorna una respuesta de texto plano directa
+#         return str(challenge), 200
+#     return f'Invalid verification Token - mode: {mode} - token: {token} - challenge: {challenge} - request: {request}', 403
 
 
-# def verify_token(req):
-#     token = req.args.get("hub.verify_token")
-#     challenge = req.args.get("hub.challenge")
-#     if token and challenge == TOKEN_APPCODE:
-#         return challenge
-#     else:
-#         return jsonify({"error": "Invalid Token"}), 401
+def verify_token(req):
+    token = req.args.get("hub.verify_token")
+    challenge = req.args.get("hub.challenge")
+    if token and challenge == TOKEN_APPCODE:
+        return challenge
+    else:
+        return jsonify({"error": "Invalid Token"}), 401
 
 
 def receive_messages(req):
