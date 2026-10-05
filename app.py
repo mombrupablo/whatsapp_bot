@@ -78,11 +78,11 @@ def webhook():
 def verify_webhook(request):
     print("******* Inside function verify_webhook *******", flush=True)
     print(f"******* Request: {request} *******", flush=True)
-    mode = request.args.get('hub_mode')
+    mode = request.args.get('hub.mode')
     print(f"******* Mode: {mode} *******", flush=True)
-    token = request.args.get("hub_verify_token")
+    token = request.args.get("hub.verify_token")
     print(f"******* Token: {token} *******", flush=True)
-    challenge = request.args.get('hub_challenge')
+    challenge = request.args.get('hub.challenge')
     print(f"******* Challenge: {challenge} *******", flush=True)
     if mode == "subscribe" and token == "PAMCODE":
         # Retorna una respuesta de texto plano directa
