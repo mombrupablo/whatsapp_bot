@@ -52,8 +52,8 @@ TOKEN_APPCODE = "PAMCODE"
 
 @app.route("/webhook", methods=['GET', 'POST'])
 def webhook():
-    print(f"****************** Inside function webhook ********************", flush=True)
-    print(f"******** Request Method {request.method}", flush=True)
+    print(f"******* Inside function webhook *******", flush=True)
+    print(f"******* Request Method {request.method} *******", flush=True)
     if request.method == 'GET':
         challenge = verify_webhook(request)
         return challenge
@@ -64,10 +64,14 @@ def webhook():
 
 @app.route("/webhook")
 def verify_webhook(request):
-    print("***************** Inside function verify_webhook *******************", flush=True)
+    print("******* Inside function verify_webhook *******", flush=True)
+    print(f"******* Request: {request} *******", flush=True)
     mode = request.args.get('hub.mode') or request.args.get('hub_mode')
+    print(f"******* Mode: {mode} *******", flush=True)
     token = request.args.get("hub.verify_token") or request.args.get("hub_verify_token")
+    print(f"******* Token: {token} *******", flush=True)
     challenge = request.args.get('hub.challenge') or request.args.get('hub_challenge')
+    print(f"******* Challenge: {challenge} *******", flush=True)
     if mode == "subscribe" and token == "PAMCODE":
         # Retorna una respuesta de texto plano directa
         return str(challenge), 200
