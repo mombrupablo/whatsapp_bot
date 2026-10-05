@@ -95,10 +95,14 @@ def webhook():
 def verify_token(req):
     print("******* Inside function verify_token *******", flush=True)
     token = req.args.get("hub.verify_token")
+    print(f"******* token: {token} *******", flush=True)
     challenge = req.args.get("hub.challenge")
+    print(f"******* challenge: {challenge} *******", flush=True)
     if token and challenge == TOKEN_APPCODE:
+        print("******* Returning the challenge *******", flush=True)
         return challenge
     else:
+        print("******* Returning the error json *******", flush=True)
         return jsonify({"error": "Invalid Token"}), 401
 
 
