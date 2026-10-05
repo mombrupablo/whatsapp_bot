@@ -51,14 +51,16 @@ def add_log_message(msg):
 TOKEN_APPCODE = "PAMCODE"
 
 
-# @app.route("/webhook", methods=['GET', 'POST'])
-# def webhook():
-#     if request.method == 'GET':
-#         challenge = verify_token(request)
-#         return challenge
-#     elif request.method == 'POST':
-#         response = receive_messages(request)
-#         return response
+@app.route("/webhook", methods=['GET', 'POST'])
+def webhook():
+    logging.info("****************** TESTING 123 ********************")
+    logging.info("******** Request Method ".format(request.method))
+    if request.method == 'GET':
+        challenge = verify_webhook(request)
+        return challenge
+    elif request.method == 'POST':
+        response = receive_messages(request)
+        return response
 
 
 @app.route("/webhook")
