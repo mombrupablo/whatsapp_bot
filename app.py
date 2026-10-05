@@ -63,7 +63,7 @@ def webhook():
 
 
 @app.route("/webhook")
-def verify_webhook():
+def verify_webhook(request):
     print("***************** Inside function verify_webhook *******************", flush=True)
     mode = request.args.get('hub.mode') or request.args.get('hub_mode')
     token = request.args.get("hub.verify_token") or request.args.get("hub_verify_token")
