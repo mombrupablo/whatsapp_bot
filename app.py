@@ -54,15 +54,15 @@ TOKEN_APPCODE = "PAMCODE"
 def webhook():
     print(f"******* Inside function webhook *******", flush=True)
     print(f"******* Request Method {request.method} *******", flush=True)
-    if request.method == ['GET']:
+    if request.method == 'GET':
         challenge = verify_webhook(request)
         return challenge
-    elif request.method == ['POST']:
+    elif request.method == 'POST':
         response = receive_messages(request)
         return response
 
 
-@app.route("/webhook")
+# @app.route("/webhook")
 def verify_webhook(request):
     print("******* Inside function verify_webhook *******", flush=True)
     print(f"******* Request: {request} *******", flush=True)
