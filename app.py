@@ -48,14 +48,24 @@ def add_log_message(msg):
 
 # Token for the configuration of the webhook
 TOKEN_APPCODE = "PAMCODE"
+CHALLENGE_TEST = "123456789"
+URL_WEBHOOK = "https://whatsapp-bot-kuab.onrender.com"
+parameters = {
+    "hub.mode": "subscribe",
+    "hub.verify_token": TOKEN_APPCODE,
+    "hub.challenge": CHALLENGE_TEST
+}
 
 
 @app.route("/webhook", methods=['GET', 'POST'])
 def webhook():
     print(f"******* Inside function webhook *******", flush=True)
     print(f"******* Request Method {request.method} *******", flush=True)
+
     if request.method == 'GET':
         print("******* In GET *******", flush=True)
+        response = request.get(URL_WEBHOOK, params=parameters)
+        print("******* Response {response} *******", flush=True)
         challenge = verify_webhook(request)
         return challenge
     elif request.method == 'POST':
