@@ -55,9 +55,11 @@ def webhook():
     print(f"******* Inside function webhook *******", flush=True)
     print(f"******* Request Method {request.method} *******", flush=True)
     if request.method == 'GET':
+        print("******* In GET *******", flush=True)
         challenge = verify_webhook(request)
         return challenge
     elif request.method == 'POST':
+        print("******* In POST *******", flush=True)        
         response = receive_messages(request)
         return response
 
