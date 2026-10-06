@@ -62,7 +62,7 @@ parameters = {
 @app.route("/webhook", methods=['GET', 'POST'])
 def webhook():
     print("******* Inside function webhook *******", flush=True)
-    print(f"******* Request Method {request.method} *******", flush=True)
+    print(f"******* Request Method {request.method}", flush=True)
 
     if request.method == 'GET':
         print("******* In GET *******", flush=True)
@@ -94,10 +94,10 @@ def webhook():
 
 def verify_token(req):
     print("******* Inside function verify_token *******", flush=True)
-    token = req.args.get("hub.verify_token")
-    print(f"******* token: {token} *******", flush=True)
-    challenge = req.args.get("hub.challenge")
-    print(f"******* challenge: {challenge} *******", flush=True)
+    token = req.args.get("hub_verify_token")
+    print(f"******* token: {token}", flush=True)
+    challenge = req.args.get("hub_challenge")
+    print(f"******* challenge: {challenge}", flush=True)
     if token and challenge == TOKEN_APPCODE:
         print("******* Returning the challenge *******", flush=True)
         return challenge
