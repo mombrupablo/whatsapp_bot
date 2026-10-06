@@ -59,7 +59,7 @@ def webhook():
     if request.method == 'GET':
         print("******* In GET *******", flush=True)
         # response = request.get(URL_WEBHOOK, params=parameters)
-        print("******* Request {request}", flush=True)
+        print(f"******* Request {request}", flush=True)
         challenge = verify_token(request)
         return challenge
     elif request.method == 'POST':
