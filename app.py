@@ -106,7 +106,7 @@ def receive_messages(req):
     print("******* Inside function receive_message *******", flush=True)
     print(f"******* Req: {req} *******", flush=True)
     rt = req.get_json()
-    print(f"******* Response Json: {rt} *******", flush=True)    
+    print(f"******* Response Json: {rt} *******", flush=True)
     add_log_message(req)
     return jsonify({"message": "EVENT_RECEIVED"})
 
