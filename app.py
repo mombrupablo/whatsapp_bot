@@ -50,14 +50,6 @@ def add_log_message(msg):
 
 # Token for the configuration of the webhook
 TOKEN_APPCODE = "PAMCODE"
-CHALLENGE_TEST = "123456789"
-URL_WEBHOOK = "https://whatsapp-bot-kuab.onrender.com"
-parameters = {
-    "hub.mode": "subscribe",
-    "hub.verify_token": TOKEN_APPCODE,
-    "hub.challenge": CHALLENGE_TEST
-}
-
 
 @app.route("/webhook", methods=['GET', 'POST'])
 def webhook():
@@ -71,7 +63,7 @@ def webhook():
         challenge = verify_token(request)
         return challenge
     elif request.method == 'POST':
-        print("******* In POST *******", flush=True)        
+        print("******* In POST *******", flush=True)
         response = receive_messages(request)
         return response
 
@@ -112,8 +104,9 @@ def verify_token(req):
 
 def receive_messages(req):
     print("******* Inside function receive_message *******", flush=True)
-    req = request.get_json()
-    print(f"******* Req: {req} *******", flush=True)    
+    print(f"******* Req: {req} *******", flush=True)
+    rt = req.get_json()
+    print(f"******* Response Json: {rt} *******", flush=True)    
     add_log_message(req)
     return jsonify({"message": "EVENT_RECEIVED"})
 
