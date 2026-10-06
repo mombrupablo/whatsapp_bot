@@ -103,12 +103,12 @@ def verify_token(req):
 
 
 @app.route('/receive')
-def receive_messages(req):
+def receive_messages():
     print("******* Inside function receive_message *******", flush=True)
-    print(f"******* Req: {req} *******", flush=True)
-    rt = req.get_json()
+    print(f"******* Req: {request} *******", flush=True)
+    rt = request.get_json()
     print(f"******* Response Json: {rt} *******", flush=True)
-    add_log_message(req)
+    add_log_message(request)
     return jsonify({"message": "EVENT_RECEIVED"})
 
 
