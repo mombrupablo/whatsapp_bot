@@ -46,12 +46,12 @@ def whatsapp_webhook():
             return jsonify({"error": "Internal Error"}), 500
 
 
-if __name__ == "__main__":
-    # Render requiere que corras la app en el host '0.0.0.0' 
-    # y que uses el puerto asignado dinámicamente por su entorno
-    import os
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+# if __name__ == "__main__":
+#     # Render requiere que corras la app en el host '0.0.0.0' 
+#     # y que uses el puerto asignado dinámicamente por su entorno
+#     import os
+#     port = int(os.environ.get("PORT", 5000))
+#     app.run(host="0.0.0.0", port=port)
 
 
 
@@ -169,6 +169,6 @@ if __name__ == "__main__":
 #     return jsonify({"message": "EVENT_RECEIVED"})
 
 
-# if __name__ == "__main__":
-#     print("****************** Starting Program ********************", flush=True)
-#     app.run(host="0.0.0.0", port=80, debug=True)
+if __name__ == "__main__":
+    print("****************** Starting Program ********************", flush=True)
+    app.run(host="0.0.0.0", port=80, debug=True)
