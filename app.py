@@ -106,7 +106,7 @@ def verify_token(req):
 def receive_messages():
     print("******* Inside function receive_message *******", flush=True)
     print(f"******* Req: {request} *******", flush=True)
-    rt = request.get_json()
+    rt = request.get_json(force=True)
     print(f"******* Response Json: {rt} *******", flush=True)
     add_log_message(request)
     return jsonify({"message": "EVENT_RECEIVED"})
