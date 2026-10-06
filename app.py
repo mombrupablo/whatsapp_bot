@@ -102,6 +102,7 @@ def verify_token(req):
         return jsonify({"error": "Invalid Token"}), 401
 
 
+@app.route('/receive')
 def receive_messages(req):
     print("******* Inside function receive_message *******", flush=True)
     print(f"******* Req: {req} *******", flush=True)
