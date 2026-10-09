@@ -23,6 +23,11 @@ class Log(db.Model):
 # Table creation
 with app.app_context():
     db.create_all()
+    prueba1 = Log(msg='Mensaje de prueba 1')
+    prueba2 = Log(msg='Mensaje de prueba 2')
+    db.session.add(prueba1)
+    db.session.add(prueba2)
+    db.session.commit()
 
 
 # Order the records by a field
