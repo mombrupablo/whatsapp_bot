@@ -94,7 +94,7 @@ def verify_token(req):
     challenge = req.args.get("hub_challenge")
     # challenge = TOKEN_APPCODE
     print(f"******* challenge: {challenge}", flush=True)
-    if challenge and token == TOKEN_APPCODE:
+    if token == TOKEN_APPCODE:
     # if challenge and token == TOKEN_APPCODE:
         print("******* Token verified. Returning the challenge *******", flush=True)
         return challenge
