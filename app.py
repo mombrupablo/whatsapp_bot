@@ -117,7 +117,7 @@ def receive_message(req):
 
         print(f"******* Response Json: {rt_json} *******", flush=True)
 
-        add_log_message(data)
+        add_log_message(rt_json)
 
         return jsonify({"message": "EVENT_RECEIVED"}), 200
 
