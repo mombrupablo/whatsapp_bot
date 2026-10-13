@@ -85,17 +85,17 @@ def webhook():
 
 def verify_token(req):
     print("******* Inside function verify_token *******", flush=True)
-    mode = req.args.get("hub.mode")
+    mode = req.args.get("hub_mode")
     # mode = 'subscribe'
     print(f"******* mode: {mode}", flush=True)
-    token = req.args.get("hub.verify_token")
+    token = req.args.get("hub_verify_token")
     # token = TOKEN_APPCODE
     print(f"******* token: {token}", flush=True)
-    challenge = req.args.get("hub.challenge")
+    challenge = req.args.get("hub_challenge")
     # challenge = TOKEN_APPCODE
     print(f"******* challenge: {challenge}", flush=True)
-    # if token and challenge == TOKEN_APPCODE:
-    if mode == 'subscribe' and token == TOKEN_APPCODE:
+    if token and challenge == TOKEN_APPCODE:
+    # if challenge and token == TOKEN_APPCODE:
         print("******* Token verified. Returning the challenge *******", flush=True)
         return challenge
     else:
