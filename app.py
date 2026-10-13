@@ -85,6 +85,7 @@ TOKEN_APPCODE = "PAMCODE"
 
 
 @app.route('/webhook', methods=['GET'])
+@app.route('/webhook/', methods=['GET', 'POST'])
 def test_webhook():
     # 1. Print the raw query string coming off the network layer
     print("RAW QUERY STRING:", request.query_string.decode('utf-8'))
