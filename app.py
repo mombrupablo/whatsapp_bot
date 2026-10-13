@@ -72,6 +72,7 @@ TOKEN_APPCODE = "PAMCODE"
 @app.route("/webhook", methods=['GET', 'POST'])
 def webhook():
     print("******* Inside function webhook *******", flush=True)
+    print(f"******* Request: {request}", flush=True)
 
     if request.method == 'GET':
         print("******* In GET *******", flush=True)
