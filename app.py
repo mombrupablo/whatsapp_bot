@@ -85,8 +85,7 @@ def webhook():
 @app.route("/", methods=['GET'])
 def index():
     print("************ Estoy en Index ************", flush=True)
-    if request.method == 'GET' and request.args.get("hub.challenge"):
-        print("************ La llamada cayo en index ************", flush=True)
+    print(f"************ Params: {request.args} ************", flush=True)
     records = Log.query.all()
     ordered_records = order_by_date_time(records)
     return render_template("index.html", records=ordered_records)
