@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+from werkzeug.middleware.proxy_fix import ProxyFix  # <-- Requerido para Gunicorn en Render
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timezone
 import json
@@ -6,6 +7,10 @@ import os
 
 
 app = Flask(__name__)
+
+# Esto le enseña a Flask a leer los argumentos detrás del proxy de Render
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
+
 
 # SQLite DB Config
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///metapython.db"
