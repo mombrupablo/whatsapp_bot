@@ -75,31 +75,31 @@ def add_log_message(data):
 TOKEN_APPCODE = "PAMCODE"
 
 
-# @app.route("/webhook", methods=['GET', 'POST'])
-# def webhook():
-#     print("******* Inside function webhook *******", flush=True)
-#     print(f"******* Request: {request.args}", flush=True)
+@app.route("/webhook", methods=['GET', 'POST'])
+def webhook():
+    print("******* Inside function webhook *******", flush=True)
+    print(f"******* Request: {request.args}", flush=True)
 
-#     if request.method == 'GET':
-#         print("******* In GET *******", flush=True)
-#         challenge = verify_token(request)
-#         return challenge
-#     elif request.method == 'POST':
-#         print("******* In POST *******", flush=True)
-#         response = receive_message(request)
-#         return response
+    if request.method == 'GET':
+        print("******* In GET *******", flush=True)
+        challenge = verify_token(request)
+        return challenge
+    elif request.method == 'POST':
+        print("******* In POST *******", flush=True)
+        response = receive_message(request)
+        return response
 
 
-@app.route('/webhook', methods=['GET'])
-@app.route('/webhook/', methods=['GET', 'POST'])
-def test_webhook():
-    # 1. Print the raw query string coming off the network layer
-    print("RAW QUERY STRING:", request.query_string.decode('utf-8'))
+# @app.route('/webhook', methods=['GET'])
+# @app.route('/webhook/', methods=['GET', 'POST'])
+# def test_webhook():
+#     # 1. Print the raw query string coming off the network layer
+#     print("RAW QUERY STRING:", request.query_string.decode('utf-8'))
 
-    # 2. Print what Flask's parsed dictionary looks like
-    print("PARSED ARGS:", request.args)
+#     # 2. Print what Flask's parsed dictionary looks like
+#     print("PARSED ARGS:", request.args)
 
-    return "OK", 200
+#     return "OK", 200
 
 
 def verify_token(req):
