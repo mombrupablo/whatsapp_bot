@@ -42,6 +42,7 @@ def order_by_date_time(records):
 
 @app.route('/')
 def index():
+    print(f"************ Estoy en Index ************", flush=True)
     records = Log.query.all()
     ordered_records = order_by_date_time(records)
     return render_template("index.html", records=ordered_records)
