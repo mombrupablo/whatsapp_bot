@@ -40,14 +40,6 @@ def order_by_date_time(records):
     return sorted(records, key=lambda x: x.date_time, reverse=True)
 
 
-@app.route('/')
-def index():
-    print(f"************ Estoy en Index ************", flush=True)
-    records = Log.query.all()
-    ordered_records = order_by_date_time(records)
-    return render_template("index.html", records=ordered_records)
-
-
 log_messages = []
 
 
@@ -143,6 +135,14 @@ def receive_message(req):
     except Exception as e:
         print(f"Error en webhook POST: {str(e)}", flush=True)
         return jsonify({'error': str(e)}), 500
+
+
+@app.route('/')
+def index():
+    print(f"************ Estoy en Index ************", flush=True)
+    records = Log.query.all()
+    ordered_records = order_by_date_time(records)
+    return render_template("index.html", records=ordered_records)
 
 
 if __name__ == "__main__":
