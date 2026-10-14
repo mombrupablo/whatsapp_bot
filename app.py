@@ -20,7 +20,7 @@ db = SQLAlchemy(app)
 # Definition of the table for logging
 class Log(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    date_time = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
+    date_time = db.Column(db.DateTime, default=datetime.now(timezone.utc))
     msg = db.Column(db.Text, nullable=False)
 
 
@@ -38,23 +38,17 @@ log_messages = []
 
 
 # Function to add log messages to the db
-def add_log_message(data):
-    try:
-        # print("******* Inside function add_log_message *******", flush=True)
-        # print(f"******* Message: {data} *******", flush=True)
+def add_log_message(msg):
+    # print("******* Inside function add_log_message *******", flush=True)
+    # print(f"******* Message: {data} *******", flush=True)
 
-        # Convertimos el JSON/dict a string
-        # json_text = json.dumps(data)
+    # Convertimos el JSON/dict a string
+    # json_text = json.dumps(data)
 
-        log_messages.append(data)
-        new_record = Log(msg=data)
-        db.session.add(new_record)
-        db.session.commit()
-
-    except Exception as e:
-        db.session.rollback()
-        print(f"Error guardando en BD: {str(e)}", flush=True)
-        raise
+    log_messages.append(msg)
+    new_record = Log(msg=msg)
+    db.session.add(new_record)
+    db.session.commit()
 
 
 # Token for the configuration of the webhook
@@ -66,11 +60,11 @@ def webhook():
     print("******* Inside function webhook *******", flush=True)
 
     if request.method == 'GET':
-        print("******* In GET *******", flush=True)
+        # print("******* In GET *******", flush=True)
         challenge = verify_token(request)
         return challenge
     elif request.method == 'POST':
-        print("******* In POST *******", flush=True)
+        # print("******* In POST *******", flush=True)
         response = receive_message(request)
         return response
 
@@ -98,19 +92,11 @@ def verify_token(req):
 
 
 def receive_message(req):
-    try:
-        # print("******* Inside function receive_message *******", flush=True)
-        data = req.get_json(silent=True)
-        if data is None:
-            print("No se recibió JSON válido", flush=True)
-            return jsonify({'error': 'JSON inválido'}), 400
-        rt_json = json.dumps(data)
-        # print(f"******* Response Json: {rt_json} *******", flush=True)
-        add_log_message(rt_json)
-        return jsonify({"message": "EVENT_RECEIVED"}), 200
-    except Exception as e:
-        print(f"Error en webhook POST: {str(e)}", flush=True)
-        return jsonify({'error': str(e)}), 500
+    # print("******* Inside function receive_message *******", flush=True)
+    rt = req.get_json(force=True)
+    # print(f"******* Response Json: {rt_json} *******", flush=True)
+    add_log_message(rt)
+    return jsonify({"message": "EVENT_RECEIVED"}), 200
 
 
 if __name__ == "__main__":
