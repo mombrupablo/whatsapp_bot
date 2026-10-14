@@ -82,6 +82,16 @@ def webhook():
         return response
 
 
+@app.route('/' methods=['GET'])
+def index():
+    print("************ Estoy en Index ************", flush=True)
+    if request.method == 'GET' and request.args("hub.challenge"):
+        print("************ La llamada cayo en index ************", flush=True)
+    records = Log.query.all()
+    ordered_records = order_by_date_time(records)
+    return render_template("index.html", records=ordered_records)
+
+
 # @app.route('/webhook', methods=['GET'])
 # @app.route('/webhook/', methods=['GET', 'POST'])
 # def test_webhook():
@@ -135,14 +145,6 @@ def receive_message(req):
     except Exception as e:
         print(f"Error en webhook POST: {str(e)}", flush=True)
         return jsonify({'error': str(e)}), 500
-
-
-@app.route('/')
-def index():
-    print(f"************ Estoy en Index ************", flush=True)
-    records = Log.query.all()
-    ordered_records = order_by_date_time(records)
-    return render_template("index.html", records=ordered_records)
 
 
 if __name__ == "__main__":
