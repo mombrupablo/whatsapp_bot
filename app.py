@@ -82,7 +82,7 @@ def webhook():
         return response
 
 
-@app.route('/' methods=['GET'])
+@app.route("/", methods=['GET'])
 def index():
     print("************ Estoy en Index ************", flush=True)
     if request.method == 'GET' and request.args("hub.challenge"):
