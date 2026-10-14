@@ -104,9 +104,9 @@ def receive_message(req):
         if data is None:
             print("No se recibió JSON válido", flush=True)
             return jsonify({'error': 'JSON inválido'}), 400
-        # rt_json = json.dumps(data, ensure_ascii=False, indent=2)
+        rt_json = json.dumps(data)
         # print(f"******* Response Json: {rt_json} *******", flush=True)
-        add_log_message(data)
+        add_log_message(rt_json)
         return jsonify({"message": "EVENT_RECEIVED"}), 200
     except Exception as e:
         print(f"Error en webhook POST: {str(e)}", flush=True)
