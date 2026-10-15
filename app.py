@@ -43,7 +43,7 @@ def add_log_message(msg):
     # print(f"******* Message: {data} *******", flush=True)
 
     # Convertimos el JSON/dict a string
-    json_text = json.dumps(msg)
+    json_text = json.dumps(msg, ensure_ascii=False)
     # print(f"******* json_text: {json_text} *******", flush=True)
 
     log_messages.append(json_text)
