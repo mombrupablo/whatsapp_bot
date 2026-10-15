@@ -1,0 +1,49 @@
+{
+    "object": "whatsapp_business_account",
+    "entry": 
+        [
+            {
+                "id": "{sender_phone_number}",
+                "changes": 
+                    [
+                        {
+                            "value": 
+                                {
+                                    "messaging_product": "whatsapp",
+                                    "metadata": 
+                                        {
+                                            "display_phone_number": "{bot_phone_number}",
+                                            "phone_number_id": "{phone_number_id}"
+                                        },
+                                    "contacts": 
+                                        [
+                                            {
+                                                "profile": 
+                                                    {
+                                                        "name": "Pablo Mombru"
+                                                    },
+                                                "wa_id": "{recipient_phone_number}",
+                                                "user_id": "{user_id}"
+                                            }
+                                        ],
+                                    "messages": 
+                                        [
+                                            {
+                                                "from": "{recipient_phone_number}",
+                                                "from_user_id": "{user_id}",
+                                                "id": "{wam_id}",
+                                                "timestamp": "1792069110",
+                                                "text": 
+                                                    {
+                                                        "body": "Muchas gracias champion"
+                                                    },
+                                                "type": "text"
+                                            }
+                                        ]
+                                },
+                            "field": "messages"
+                        }
+                    ]
+            }
+        ]
+}

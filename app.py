@@ -44,7 +44,7 @@ def add_log_message(msg):
 
     # Convertimos el JSON/dict a string
     json_text = json.dumps(msg)
-    print(f"******* json_text: {json_text} *******", flush=True)
+    # print(f"******* json_text: {json_text} *******", flush=True)
 
     log_messages.append(json_text)
     new_record = Log(msg=json_text)
@@ -95,7 +95,18 @@ def verify_token(req):
 def receive_message(req):
     # print("******* Inside function receive_message *******", flush=True)
     rt = req.get_json()
-    print(f"******* Response Json: {rt} *******", flush=True)
+    # print(f"******* Response Json: {rt} *******", flush=True)
+
+    entry = rt["entry"][0]
+    changes = entry["changes"][0]
+    value = changes[0]["value"]
+    messages = value["messages"][0]
+    from_number = messages["from"]
+    text = messages["text"]["body"]
+
+    print(f"******* From number: {from_number} *******", flush=True)
+    print(f"******* Text: {text} *******", flush=True)
+
     add_log_message(rt)
     return jsonify({"message": "EVENT_RECEIVED"}), 200
 
