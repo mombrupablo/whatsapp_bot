@@ -39,14 +39,15 @@ log_messages = []
 
 # Function to add log messages to the db
 def add_log_message(msg):
-    # print("******* Inside function add_log_message *******", flush=True)
+    print("******* Inside function add_log_message *******", flush=True)
     # print(f"******* Message: {data} *******", flush=True)
 
     # Convertimos el JSON/dict a string
-    # json_text = json.dumps(data)
+    json_text = json.dumps(msg)
+    print(f"******* json_text: {json_text} *******", flush=True)
 
-    log_messages.append(msg)
-    new_record = Log(msg=msg)
+    log_messages.append(json_text)
+    new_record = Log(msg=json_text)
     db.session.add(new_record)
     db.session.commit()
 
