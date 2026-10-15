@@ -118,8 +118,10 @@ def receive_message(req):
                         print(f"******* Text: {message} *******", flush=True)
                         from_number = message_object["from"]
                         print(f"******* From number: {from_number} *******", flush=True)
-                        add_log_message(json.dumps(message, ensure_ascii=False))
-                        add_log_message(json.dumps(from_number, ensure_ascii=False))
+                        # add_log_message(json.dumps(message, ensure_ascii=False))
+                        add_log_message(message)
+                        # add_log_message(json.dumps(from_number, ensure_ascii=False))
+                        add_log_message(from_number)
 
         return jsonify({"message": "EVENT_RECEIVED"}), 200
 
