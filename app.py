@@ -123,6 +123,7 @@ def receive_message(req):
                         add_log_message(message)
                         # add_log_message(json.dumps(from_number, ensure_ascii=False))
                         add_log_message(from_number)
+                        send_wsp_message(message, from_number)
 
         return jsonify({"message": "EVENT_RECEIVED"}), 200
 
