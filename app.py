@@ -169,12 +169,12 @@ def send_wsp_message(message, phone_number):
     try:
         connection.request("POST", "/v25.0/1407042512488552/messages", data, header)
         response = connection.getresponse()
-        add_log_message(json.dumps(response.status))
-        add_log_message(json.dumps(response.reason))
+        add_log_message(response.status)
+        add_log_message(response.reason)
         # print(f"******** Response Status: {response.status}", flush=True)
         # print(f"******** Response Reason: {response.reason}", flush=True)
     except Exception as e:
-        add_log_message(json.dumps(e))
+        add_log_message(e)
     finally:
         connection.close
 
