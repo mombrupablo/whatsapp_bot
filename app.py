@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify
 from werkzeug.middleware.proxy_fix import ProxyFix  # <-- Requerido para Gunicorn en Render
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timezone
+import http.client
 import json
 import os
 
@@ -127,6 +128,54 @@ def receive_message(req):
 
     except Exception as e:
         return jsonify({"message": "EVENT_RECEIVED"}), 200
+
+
+def send_wsp_message(message, phone_number):
+    message = message.lower()
+
+    data = {}
+    if "hola" in message:
+        data = {
+            "messaging_product": "whatsapp",   
+            "recipient_type": "individual",
+            "to": phone_number,
+            "type": "text",
+            "text": {
+                "preview_url": False,
+                "body": "🚀 Hola, como estás? Bienvenido!"
+            }
+        }
+    else:
+        data = {
+            "messaging_product": "whatsapp",   
+            "recipient_type": "individual",
+            "to": phone_number,
+            "type": "text",
+            "text": {
+                "preview_url": False,
+                "body": "🚀 Hola, como estás? Bienvenido!.\nPor favor indica la opción:\n💬1.Hablar\n📳2.Llamar\n🚪3.Huir"
+            }
+        }
+    data = json.dumps(data)
+
+    header = {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer EAAQTetXZAXtYBSktcMJsElxjZCZBN5VZBubR8O4IgfOaI9yGurua5jKqQ5ulgmyOYMmuQquQ0dYMw5BUedphirckaM2v5uhS4ZA3rDIl5yktOdHEhihfJavKyCqju3yeqs7ZCBoZAoIZA5m6piyPT7HPUN7VtObWAt3bnt2ZCwnHK9690Tf6dKd8Y8xIaDcZBLZCsu5XNygSRfBXKWI8bVUMQVPsYKLwWOxmcSXrMSVKO1o528iokl1EvZCNqSDbzIunSU8HC3ZA9TTAesZCGZBFcv2N4qTEQZDZD"
+    }
+
+    connection = http.client.HTTPConnection("graph.facebook.com")
+
+    try:
+        connection.request("POST", "/v25.0/1407042512488552/messages", data, header)
+        response = connection.getresponse()
+        add_log_message(json.dumps(response.status))
+        add_log_message(json.dumps(response.reason))
+        # print(f"******** Response Status: {response.status}", flush=True)
+        # print(f"******** Response Reason: {response.reason}", flush=True)
+    except Exception as e:
+        add_log_message(json.dumps(e))
+    finally:
+        connection.close
 
 
 if __name__ == "__main__":
