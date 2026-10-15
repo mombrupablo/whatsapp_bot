@@ -93,25 +93,29 @@ def verify_token(req):
 
 
 def receive_message(req):
-    # print("******* Inside function receive_message *******", flush=True)
-    rt = req.get_json()
-    # print(f"******* Response Json: {rt} *******", flush=True)
+    try:
+        # print("******* Inside function receive_message *******", flush=True)
+        rt = req.get_json()
+        # print(f"******* Response Json: {rt} *******", flush=True)
 
-    entry = rt["entry"][0]
-    print(f"******* entry: {entry} *******", flush=True)
-    changes = entry["changes"][0]
-    print(f"******* changes: {changes} *******", flush=True)
-    value = changes["value"]
-    print(f"******* value: {value} *******", flush=True)
-    messages = value["messages"][0]
-    print(f"******* message: {messages} *******", flush=True)
-    from_number = messages["from"]
-    print(f"******* From number: {from_number} *******", flush=True)
-    text = messages["text"]["body"]
-    print(f"******* Text: {text} *******", flush=True)
+        entry = rt["entry"][0]
+        print(f"******* entry: {entry} *******", flush=True)
+        changes = entry["changes"][0]
+        print(f"******* changes: {changes} *******", flush=True)
+        value = changes["value"]
+        print(f"******* value: {value} *******", flush=True)
+        message_object = value["messages"][0]
+        print(f"******* message: {message_object} *******", flush=True)
+        from_number = message_object["from"]
+        print(f"******* From number: {from_number} *******", flush=True)
+        text = message_object["text"]["body"]
+        print(f"******* Text: {text} *******", flush=True)
 
-    add_log_message(rt)
-    return jsonify({"message": "EVENT_RECEIVED"}), 200
+        add_log_message(message_object)
+        return jsonify({"message": "EVENT_RECEIVED"}), 200
+
+    except Exception as e:
+        return jsonify({"message": "EVENT_RECEIVED"}), 200
 
 
 if __name__ == "__main__":
