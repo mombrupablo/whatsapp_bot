@@ -161,13 +161,13 @@ def send_wsp_message(message, phone_number):
 
     header = {
         "Content-Type": "application/json",
-        "Authorization": os.getenv("META_AUTHORIZATION_TOKEN")
+        "Authorization": "os.getenv("META_AUTHORIZATION_TOKEN")    
     }
 
     connection = http.client.HTTPConnection("graph.facebook.com")
 
     try:
-        connection.request("POST", "/v25.0/{phone_number_id}/messages", data, header)
+        connection.request("POST", "/v26.0/{phone_number_id}/messages", data, header)
         response = connection.getresponse()
         add_log_message(response.status)
         add_log_message(response.reason)
