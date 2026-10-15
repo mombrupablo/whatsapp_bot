@@ -164,7 +164,7 @@ def send_wsp_message(message, phone_number):
         "Authorization": "Bearer EAAQTetXZAXtYBSufShL0nTQEvut35RBYF1fdUYhdIEUA1DNtZCNVxcd9Qbmp6FcRYeNTkGqmE5YNnRNwWDo0hdUBCAjiZCQbd69ZCUZAlNziKyNhwkKfsEaugnh2jGuKoyTD4w7mwBmmjgW8F6x74NgBKUzCikd2NSj5IZB6AmiEdmr79pTwMS4wuZAOsGEydfy01BTxgmq5ZC8pqhnK4wUF07A1V9l4dbgZAefOjxu1JYdQQz29w8ZBULqK0k5mYmX3oyHHaKBTuDQTgBlrZBww8a9uLcZD"
     }
 
-    header = json.dumps(header)
+    # header = json.dumps(header)
 
     connection = http.client.HTTPSConnection("graph.facebook.com")
     connection.set_debuglevel(1)
