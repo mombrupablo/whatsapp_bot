@@ -105,13 +105,22 @@ def receive_message(req):
         value = changes["value"]
         print(f"******* value: {value} *******", flush=True)
         message_object = value["messages"][0]
-        print(f"******* message: {message_object} *******", flush=True)
-        from_number = message_object["from"]
-        print(f"******* From number: {from_number} *******", flush=True)
-        text = message_object["text"]["body"]
-        print(f"******* Text: {text} *******", flush=True)
+        if message_object:
+            print(f"******* message: {message_object} *******", flush=True)
+            if "type" in message_object:
+                msg_type = message_object["type"]
+                print(f"******* Message Type: {msg_type} *******", flush=True)
+                if msg_type == "interactive":
+                    return 0
+                if msg_type == "text":
+                    if "text" in message_object:
+                        message = message_object["text"]["body"]
+                        print(f"******* Text: {message} *******", flush=True)
+                        from_number = message_object["from"]
+                        print(f"******* From number: {from_number} *******", flush=True)
+                        add_log_message(json.dumps(message))
+                        add_log_message(json.dumps(from_number))
 
-        add_log_message(message_object)
         return jsonify({"message": "EVENT_RECEIVED"}), 200
 
     except Exception as e:
