@@ -157,7 +157,7 @@ def send_wsp_message(message, phone_number):
                 "body": "🚀 Hola, como estás? Bienvenido!.\nPor favor indica la opción:\n💬1.Hablar\n📳2.Llamar\n🚪3.Huir"
             }
         }
-    data = json.dumps(data)
+    data = json.dumps(data, ensure_ascii=False)
     print(f"******** Data sent: {data}", flush=True)
 
     header = {
