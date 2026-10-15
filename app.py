@@ -93,7 +93,7 @@ def verify_token(req):
 
 def receive_message(req):
     # print("******* Inside function receive_message *******", flush=True)
-    rt = req.get_json(force=True)
+    rt = req.get_json()
     print(f"******* Response Json: {rt} *******", flush=True)
     add_log_message(rt)
     return jsonify({"message": "EVENT_RECEIVED"}), 200
