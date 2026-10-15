@@ -161,13 +161,13 @@ def send_wsp_message(message, phone_number):
 
     header = {
         "Content-Type": "application/json",
-        "Authorization": "Bearer EAAQTetXZAXtYBSktcMJsElxjZCZBN5VZBubR8O4IgfOaI9yGurua5jKqQ5ulgmyOYMmuQquQ0dYMw5BUedphirckaM2v5uhS4ZA3rDIl5yktOdHEhihfJavKyCqju3yeqs7ZCBoZAoIZA5m6piyPT7HPUN7VtObWAt3bnt2ZCwnHK9690Tf6dKd8Y8xIaDcZBLZCsu5XNygSRfBXKWI8bVUMQVPsYKLwWOxmcSXrMSVKO1o528iokl1EvZCNqSDbzIunSU8HC3ZA9TTAesZCGZBFcv2N4qTEQZDZD"
+        "Authorization": "Bearer EAAQTetXZAXtYBSsHBYHEZAiusUQmdXM0MPxawmkfBMdMJORQiXLrpiSBZCm4ZCR1v6Kc4dD5iLnmmcyt0ZBgcRQXU471roxJP5tPz8DAXIXDB02uEpD4slN9lBfDltVRmyQ70fRZCI5OLxxIRMdgBGN5DL8Hhf99RP8H1OdMU0vNTlgZCvxvBjKojALuYLX4mhrjM1PgpsFBUnMvW0E56XgzWDDyamw3dMfa9WfWOtk2CZCDWZBaRggaCYpUsZCEMsFYjae65i5t8oWvxgwgRg4BxKZBBEZD    
     }
 
     connection = http.client.HTTPConnection("graph.facebook.com")
 
     try:
-        connection.request("POST", "/v25.0/1407042512488552/messages", data, header)
+        connection.request("POST", "/v26.0/1407042512488552/messages", data, header)
         response = connection.getresponse()
         add_log_message(response.status)
         add_log_message(response.reason)
