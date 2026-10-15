@@ -101,7 +101,7 @@ def receive_message(req):
     print(f"******* entry: {entry} *******", flush=True)
     changes = entry["changes"][0]
     print(f"******* changes: {changes} *******", flush=True)
-    value = changes[0]["value"]
+    value = changes["value"]
     print(f"******* value: {value} *******", flush=True)
     messages = value["messages"][0]
     print(f"******* message: {messages} *******", flush=True)
