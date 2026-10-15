@@ -98,13 +98,16 @@ def receive_message(req):
     # print(f"******* Response Json: {rt} *******", flush=True)
 
     entry = rt["entry"][0]
+    print(f"******* entry: {entry} *******", flush=True)
     changes = entry["changes"][0]
+    print(f"******* changes: {changes} *******", flush=True)
     value = changes[0]["value"]
+    print(f"******* value: {value} *******", flush=True)
     messages = value["messages"][0]
+    print(f"******* message: {messages} *******", flush=True)
     from_number = messages["from"]
-    text = messages["text"]["body"]
-
     print(f"******* From number: {from_number} *******", flush=True)
+    text = messages["text"]["body"]
     print(f"******* Text: {text} *******", flush=True)
 
     add_log_message(rt)
