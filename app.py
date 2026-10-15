@@ -158,7 +158,7 @@ def send_wsp_message(message, phone_number):
             }
         }
     data = json.dumps(data, ensure_ascii=False)
-    print(f"******** Data sent: {data}", flush=True)
+    # print(f"******** Data sent: {data}", flush=True)
 
     header = {
         "Content-Type": "application/json",
