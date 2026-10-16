@@ -118,8 +118,8 @@ def receive_message(req):
                         message = message_object["text"]["body"]
                         print(f"******* Text: {message} *******", flush=True)
                         from_number = message_object["from"]
-                        phone_number = from_number.replace("9", "")
-                        print(f"******* From number: {from_number} *******", flush=True)
+                        phone_number = from_number.replace("9", "", 1)
+                        print(f"******* From number: {phone_number} *******", flush=True)
                         # add_log_message(json.dumps(message, ensure_ascii=False))
                         add_log_message(message)
                         # add_log_message(json.dumps(from_number, ensure_ascii=False))
