@@ -171,19 +171,19 @@ def send_wsp_message(message, phone_number):
     print(f"******** Connection: {connection}", flush=True)
     connection.set_debuglevel(1)
 
-    try:
-        print(f"******** Inside try ************", flush=True)
-        connection.request("POST", "/v25.0/1407042512488552/messages", data, header)
-        response = connection.getresponse()
-        print(f"********* HTTP Response: {response.msg}", flush=True)
-        add_log_message(response.status)
-        add_log_message(response.reason)
-        print(f"******** Response Status: {response.status}", flush=True)
-        print(f"******** Response Reason: {response.reason}", flush=True)
-    except Exception as e:
-        add_log_message(e)
-    finally:
-        connection.close
+    # try:
+    print(f"******** Inside try ************", flush=True)
+    connection.request("POST", "/v25.0/1407042512488552/messages", data, header)
+    response = connection.getresponse()
+    print(f"********* HTTP Response: {response.msg}", flush=True)
+    add_log_message(response.status)
+    add_log_message(response.reason)
+    print(f"******** Response Status: {response.status}", flush=True)
+    print(f"******** Response Reason: {response.reason}", flush=True)
+    # except Exception as e:
+        # add_log_message(e)
+    # finally:
+    connection.close
 
 
 if __name__ == "__main__":
