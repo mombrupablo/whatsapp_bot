@@ -178,8 +178,8 @@ def send_wsp_message(message, phone_number):
         print(f"********* HTTP Response: {response.msg}", flush=True)
         add_log_message(response.status)
         add_log_message(response.reason)
-        # print(f"******** Response Status: {response.status}", flush=True)
-        # print(f"******** Response Reason: {response.reason}", flush=True)
+        print(f"******** Response Status: {response.status}", flush=True)
+        print(f"******** Response Reason: {response.reason}", flush=True)
     except Exception as e:
         add_log_message(e)
     finally:
