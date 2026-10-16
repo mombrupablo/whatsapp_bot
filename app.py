@@ -40,7 +40,7 @@ log_messages = []
 
 # Function to add log messages to the db
 def add_log_message(msg):
-    print("******* Inside function add_log_message *******", flush=True)
+    # print("******* Inside function add_log_message *******", flush=True)
     # print(f"******* Message: {data} *******", flush=True)
 
     # Convertimos el JSON/dict a string
@@ -100,34 +100,33 @@ def receive_message(req):
         # print(f"******* Response Json: {rt} *******", flush=True)
 
         entry = rt["entry"][0]
-        print(f"******* entry: {entry} *******", flush=True)
+        # print(f"******* entry: {entry} *******", flush=True)
         changes = entry["changes"][0]
-        print(f"******* changes: {changes} *******", flush=True)
+        # print(f"******* changes: {changes} *******", flush=True)
         value = changes["value"]
-        print(f"******* value: {value} *******", flush=True)
+        # print(f"******* value: {value} *******", flush=True)
         message_object = value["messages"][0]
         if message_object:
-            print(f"******* message: {message_object} *******", flush=True)
+            # print(f"******* message: {message_object} *******", flush=True)
             if "type" in message_object:
                 msg_type = message_object["type"]
-                print(f"******* Message Type: {msg_type} *******", flush=True)
+                # print(f"******* Message Type: {msg_type} *******", flush=True)
                 if msg_type == "interactive":
                     return 0
                 if msg_type == "text":
                     if "text" in message_object:
                         message = message_object["text"]["body"]
-                        print(f"******* Text: {message} *******", flush=True)
+                        # print(f"******* Text: {message} *******", flush=True)
                         from_number = message_object["from"]
                         phone_number = from_number.replace("9", "", 1)
-                        print(f"******* From number: {phone_number} *******", flush=True)
+                        # print(f"******* From number: {phone_number} *******", flush=True)
                         # add_log_message(json.dumps(message, ensure_ascii=False))
                         add_log_message(message)
                         # add_log_message(json.dumps(from_number, ensure_ascii=False))
-                        add_log_message(from_number)
+                        # add_log_message(from_number)
                         send_wsp_message(message, phone_number)
 
         return jsonify({"message": "EVENT_RECEIVED"}), 200
-
     except Exception as e:
         return jsonify({"message": "EVENT_RECEIVED"}), 200
 
@@ -158,10 +157,9 @@ def send_wsp_message(message, phone_number):
                 "body": "🚀 Hola, como estás? Bienvenido!.\nPor favor indica la opción:\n💬1.Hablar\n📳2.Llamar\n🚪3.Huir"
             }
         }
-    # data = json.dumps(data, ensure_ascii=False)
     data = json.dumps(data)
     data = data.encode('utf-8')
-    print(f"******** Data sent: {data}", flush=True)
+    # print(f"******** Data sent: {data}", flush=True)
 
     header = {
         "Content-Type": "application/json",
@@ -169,27 +167,25 @@ def send_wsp_message(message, phone_number):
         "Authorization": "Bearer EAAQTetXZAXtYBSsuhIzy4vmdNZA868Y8oIhPSJsryLwmE3pRbZCnx7QC2kq59uHFZCjCYkrQEfuknZCQZCqZB9ZACbzKAUd7z8LaseDyYCTJcLPkBONixSmEfZAQOuPRmMnXXZAiZA0pW85ZCmJfe1tJjRiX1Fj1UDQyiX5YeQr9VsSsOjisIp763mhklItGoirbxWenK8PcByawjz1ZBohQ27gB2Ch7vNEzLoI9G94Ju85V4EXDCV3f2CDwSZBOBYR3VvXrvXWNtpRCLMV9QVHJrN5mG0ZCQZDZD"
     }
 
-    # header = json.dumps(header, ensure_ascii=False)
-    # header = json.dumps(header)
-    print(f"******** Header sent: {header}", flush=True)
+    # print(f"******** Header sent: {header}", flush=True)
     connection = http.client.HTTPSConnection("graph.facebook.com")
-    print(f"******** Connection: {connection}", flush=True)
-    connection.set_debuglevel(1)
+    # print(f"******** Connection: {connection}", flush=True)
+    # connection.set_debuglevel(1)
 
-    # try:
-    # print(f"******** Inside try ************", flush=True)
-    connection.request("POST", "/v25.0/1407042512488552/messages", data, header)
-    response = connection.getresponse()
-    response_body = response.read().decode('utf-8')
-    print(f"********* HTTP Response: {response_body}", flush=True)
-    add_log_message(response.status)
-    add_log_message(response.reason)
-    print(f"******** Response Status: {response.status}", flush=True)
-    print(f"******** Response Reason: {response.reason}", flush=True)
-    # except Exception as e:
-        # add_log_message(e)
-    # finally:
-    connection.close
+    try:
+        # print(f"******** Inside try ************", flush=True)
+        connection.request("POST", "/v25.0/1407042512488552/messages", data, header)
+        # response = connection.getresponse()
+        # response_body = response.read().decode('utf-8')
+        # print(f"********* HTTP Response: {response_body}", flush=True)
+        # add_log_message(response.status)
+        # add_log_message(response.reason)
+        # print(f"******** Response Status: {response.status}", flush=True)
+        # print(f"******** Response Reason: {response.reason}", flush=True)
+    except Exception as e:
+        add_log_message(e)
+    finally:
+        connection.close
 
 
 if __name__ == "__main__":
