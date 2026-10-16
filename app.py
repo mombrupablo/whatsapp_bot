@@ -157,7 +157,8 @@ def send_wsp_message(message, phone_number):
                 "body": "🚀 Hola, como estás? Bienvenido!.\nPor favor indica la opción:\n💬1.Hablar\n📳2.Llamar\n🚪3.Huir"
             }
         }
-    data = json.dumps(data, ensure_ascii=False)
+    # data = json.dumps(data, ensure_ascii=False)
+    data = json.dumps(data)
     print(f"******** Data sent: {data}", flush=True)
 
     header = {
@@ -165,14 +166,15 @@ def send_wsp_message(message, phone_number):
         "Authorization": os.getenv("META_AUTHORIZATION_TOKEN")
     }
 
-    header = json.dumps(header, ensure_ascii=False)
+    # header = json.dumps(header, ensure_ascii=False)
+    # header = json.dumps(header)
     print(f"******** Header sent: {header}", flush=True)
     connection = http.client.HTTPSConnection("graph.facebook.com")
     print(f"******** Connection: {connection}", flush=True)
     connection.set_debuglevel(1)
 
     # try:
-    print(f"******** Inside try ************", flush=True)
+    # print(f"******** Inside try ************", flush=True)
     connection.request("POST", "/v25.0/{phone_number_id}/messages", data, header)
     response = connection.getresponse()
     print(f"********* HTTP Response: {response.msg}", flush=True)
