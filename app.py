@@ -139,7 +139,7 @@ def send_wsp_message(message, phone_number):
         data = {
             "messaging_product": "whatsapp",   
             "recipient_type": "individual",
-            "to": phone_number,
+            "to": "54111569968204",  # phone_number,
             "type": "text",
             "text": {
                 "preview_url": False,
@@ -148,7 +148,7 @@ def send_wsp_message(message, phone_number):
         }
     else:
         data = {
-            "messaging_product": "whatsapp",   
+            "messaging_product": "whatsapp",
             "recipient_type": "individual",
             "to": phone_number,
             "type": "text",
