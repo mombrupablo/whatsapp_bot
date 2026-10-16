@@ -159,10 +159,12 @@ def send_wsp_message(message, phone_number):
         }
     # data = json.dumps(data, ensure_ascii=False)
     data = json.dumps(data)
+    data = data.encode('utf-8')
     print(f"******** Data sent: {data}", flush=True)
 
     header = {
         "Content-Type": "application/json",
+        "Content-Length": str(len(data)),
         "Authorization": os.getenv("META_AUTHORIZATION_TOKEN")
     }
 
