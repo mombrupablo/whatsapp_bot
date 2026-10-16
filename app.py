@@ -97,7 +97,7 @@ def receive_message(req):
     try:
         # print("******* Inside function receive_message *******", flush=True)
         rt = req.get_json()
-        # print(f"******* Response Json: {rt} *******", flush=True)
+        print(f"******* Response Json: {rt} *******", flush=True)
 
         entry = rt["entry"][0]
         print(f"******* entry: {entry} *******", flush=True)
