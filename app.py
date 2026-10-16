@@ -158,19 +158,21 @@ def send_wsp_message(message, phone_number):
             }
         }
     data = json.dumps(data, ensure_ascii=False)
-    # print(f"******** Data sent: {data}", flush=True)
+    print(f"******** Data sent: {data}", flush=True)
 
     header = {
         "Content-Type": "application/json",
         "Authorization": "os.getenv("META_AUTHORIZATION_TOKEN")"
     }
 
-    # header = json.dumps(header)
-
+    header = json.dumps(header, ensure_ascii=False)
+    print(f"******** Header sent: {header}", flush=True)
     connection = http.client.HTTPSConnection("graph.facebook.com")
+    print(f"******** Connection: {connection}", flush=True)
     connection.set_debuglevel(1)
 
     try:
+        print(f"******** Inside try ************", flush=True)
         connection.request("POST", "/v25.0/{phone_number_id}/messages", data, header)
         response = connection.getresponse()
         print(f"********* HTTP Response: {response.msg}", flush=True)
