@@ -162,7 +162,7 @@ def send_wsp_message(message, phone_number):
 
     header = {
         "Content-Type": "application/json",
-        "Authorization": "Bearer EAAQTetXZAXtYBSufShL0nTQEvut35RBYF1fdUYhdIEUA1DNtZCNVxcd9Qbmp6FcRYeNTkGqmE5YNnRNwWDo0hdUBCAjiZCQbd69ZCUZAlNziKyNhwkKfsEaugnh2jGuKoyTD4w7mwBmmjgW8F6x74NgBKUzCikd2NSj5IZB6AmiEdmr79pTwMS4wuZAOsGEydfy01BTxgmq5ZC8pqhnK4wUF07A1V9l4dbgZAefOjxu1JYdQQz29w8ZBULqK0k5mYmX3oyHHaKBTuDQTgBlrZBww8a9uLcZD"
+        "Authorization": "Bearer EAAQTetXZAXtYBSuKLvCr9lXDkSASzPRTh6gMK4PoSbwl5lw4PM9IRZBdcGTybUVZCoPN9Ysd1n4XHmYvbFGApbglcZAae0dAmiElf55bLl03aCME1ctdHQeX0aBbiSqQK4pHu5Gyk6qEPZCtMkVYhOo0ch28f7TIskqosAhrrXPN2hYu7wjwh0vGbgXCeZADF3HfewyjPE1ZAtroFcixTe6Hi078CMpVT9gO2i7cojxbrHCK0Pk77x4MyLNQtbQ4DImKy5CIUxZAvPDld27LyvHZBfPYbGwZDZD"
     }
 
     header = json.dumps(header, ensure_ascii=False)
