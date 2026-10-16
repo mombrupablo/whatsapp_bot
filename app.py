@@ -97,7 +97,7 @@ def receive_message(req):
     try:
         # print("******* Inside function receive_message *******", flush=True)
         rt = req.get_json()
-        print(f"******* Response Json: {rt} *******", flush=True)
+        # print(f"******* Response Json: {rt} *******", flush=True)
 
         entry = rt["entry"][0]
         print(f"******* entry: {entry} *******", flush=True)
@@ -118,12 +118,13 @@ def receive_message(req):
                         message = message_object["text"]["body"]
                         print(f"******* Text: {message} *******", flush=True)
                         from_number = message_object["from"]
+                        phone_number = from_number.replace("9", "")
                         print(f"******* From number: {from_number} *******", flush=True)
                         # add_log_message(json.dumps(message, ensure_ascii=False))
                         add_log_message(message)
                         # add_log_message(json.dumps(from_number, ensure_ascii=False))
                         add_log_message(from_number)
-                        send_wsp_message(message, from_number)
+                        send_wsp_message(message, phone_number)
 
         return jsonify({"message": "EVENT_RECEIVED"}), 200
 
@@ -139,7 +140,7 @@ def send_wsp_message(message, phone_number):
         data = {
             "messaging_product": "whatsapp",   
             "recipient_type": "individual",
-            "to": "54111569968204",  # phone_number,
+            "to": phone_number,
             "type": "text",
             "text": {
                 "preview_url": False,
