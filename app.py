@@ -165,7 +165,7 @@ def send_wsp_message(message, phone_number):
     header = {
         "Content-Type": "application/json",
         "Content-Length": str(len(data)),
-        "Authorization": "Bearer EAAQTetXZAXtYBSuKLvCr9lXDkSASzPRTh6gMK4PoSbwl5lw4PM9IRZBdcGTybUVZCoPN9Ysd1n4XHmYvbFGApbglcZAae0dAmiElf55bLl03aCME1ctdHQeX0aBbiSqQK4pHu5Gyk6qEPZCtMkVYhOo0ch28f7TIskqosAhrrXPN2hYu7wjwh0vGbgXCeZADF3HfewyjPE1ZAtroFcixTe6Hi078CMpVT9gO2i7cojxbrHCK0Pk77x4MyLNQtbQ4DImKy5CIUxZAvPDld27LyvHZBfPYbGwZDZD"
+        "Authorization": "Bearer EAAQTetXZAXtYBSvL6vKGG3gZBTrdFjm4fhNk0Q7xBA2E2mdQlPsyVzR3ZApcdYkP5uMZA2sZBFlOX4l6oDeUKxx1fVUOZB7WSUSk09ptLveUwnwsdFxVSAAQSiiRrOZCb3wZCQvfWBqeFJ5XyW4aZCNeyzUJgFRp2MxSZCIw3q6Lq25Kq67iVC1w210ChpFaP6SZBZBjowGrWeFNhqCCeWPTVCwZBEFLXN0ZAuEmLRWC7FBHxZA652R3TAjq1HBUanZCokwHg0EqfFWtmpL1AfsHn25e6XtzXQZDZD"
     }
 
     # header = json.dumps(header, ensure_ascii=False)
