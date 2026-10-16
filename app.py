@@ -170,14 +170,14 @@ def send_wsp_message(message, phone_number):
     # print(f"******** Header sent: {header}", flush=True)
     connection = http.client.HTTPSConnection("graph.facebook.com")
     # print(f"******** Connection: {connection}", flush=True)
-    connection.set_debuglevel(1)
+    # connection.set_debuglevel(1)
 
     try:
         # print(f"******** Inside try ************", flush=True)
         connection.request("POST", "/v25.0/1407042512488552/messages", data, header)
-        response = connection.getresponse()
-        response_body = response.read().decode('utf-8')
-        print(f"********* HTTP Response: {response_body}", flush=True)
+        # response = connection.getresponse()
+        # response_body = response.read().decode('utf-8')
+        # print(f"********* HTTP Response: {response_body}", flush=True)
         # add_log_message(response.status)
         # add_log_message(response.reason)
         # print(f"******** Response Status: {response.status}", flush=True)
