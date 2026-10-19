@@ -189,7 +189,7 @@ def send_wsp_message(message, phone_number):
             "to": phone_number,
             "type": "document",
             "document": {
-                "link": "https://file-examples.com/storage/fe557d50296ad628796165d/2017/10/file-sample_150kB.pdf",
+                "link": "http://file-examples.com/storage/fe557d50296ad628796165d/2017/10/file-sample_150kB.pdf",
                 "caption": "Curso PDF"
             }
         }
@@ -200,7 +200,7 @@ def send_wsp_message(message, phone_number):
             "to": phone_number,
             "type": "audio",
             "audio": {
-                "link": "https://file-examples.com/storage/fe557d50296ad628796165d/2017/11/file_example_MP3_1MG.mp3",
+                "link": "http://file-examples.com/storage/fe557d50296ad628796165d/2017/11/file_example_MP3_1MG.mp3",
                 "voice": True
             }
         }
@@ -211,7 +211,7 @@ def send_wsp_message(message, phone_number):
             "to": phone_number,
             "type": "video",
             "video": {
-                "link": "https://file-examples.com/storage/fe557d50296ad628796165d/2017/04/file_example_MP4_480_1_5MG.mp4",
+                "link": "http://file-examples.com/storage/fe557d50296ad628796165d/2017/04/file_example_MP4_480_1_5MG.mp4",
                 "caption": "Video del Curso"
             }
         }
