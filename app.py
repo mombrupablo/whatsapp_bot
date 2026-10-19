@@ -160,7 +160,7 @@ def send_wsp_message(message, phone_number):
         }
     elif "1" in message:
         data = {
-            "messaging_product": "whatsapp",   
+            "messaging_product": "whatsapp",
             "recipient_type": "individual",
             "to": phone_number,
             "type": "text",
@@ -235,6 +235,70 @@ def send_wsp_message(message, phone_number):
             "text": {
                 "preview_url": False,
                 "body": """Nuestros horarios de atención son: Lun a Vie: 8 a 15 y Sab: 8 a 12"""
+            }
+        }
+    elif "button" in message:
+        data = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": phone_number,
+            "type": "interactive",
+            "interactive": {
+                "type": "button",
+                "body": {
+                    "text": "Confirmas tu registro?"
+                },
+                "footer": {
+                    "text": "Selecciona una de las opciones"
+                },
+                "action": {
+                    "buttons": [
+                        {
+                            "type": "reply",
+                            "reply": {
+                                "id": "btnsi",
+                                "title": "Si"
+                            }
+                        },
+                        {
+                            "type": "reply",
+                            "reply": {
+                                "id": "btnno",
+                                "title": "No"
+                            }
+                        },
+                        {
+                            "type": "reply",
+                            "reply": {
+                                "id": "btntv",
+                                "title": "Tal Vez"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    else:
+        data = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": phone_number,
+            "type": "text",
+            "text": {
+                "preview_url": False,
+                "body": """
+                🚀 Hola, como estás? Bienvenido!.
+
+            Por favor indica el número de opción para obtener información:
+            1️⃣ Información del Curso.❓
+            2️⃣ Ubicación del Local.📍
+            3️⃣ Enviar Temario en PDF.📄
+            4️⃣ Audio explicando el Curso.🎧
+            5️⃣ Video de Introducción.⏯️
+            6️⃣ Hablar con un Representante.🙋🏻‍♂️🙋🏼‍♀️
+            7️⃣ Horario de Atención.⏱️
+            0️⃣ Volver al Menú.↩️
+            """
             }
         }
 
