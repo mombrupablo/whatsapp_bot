@@ -143,11 +143,13 @@ def send_wsp_message(message, phone_number):
             "type": "text",
             "text": {
                 "preview_url": False,
-                "body": """🚀 Hola, como estás? Bienvenido!.
+                "body": """
+                🚀 Hola, como estás? Bienvenido!.
+
                 Por favor indica el número de opción para obtener información:
                 1️⃣ Información del Curso.❓ 
                 2️⃣ Ubicación del Local.📍
-                3️⃣ Enviar Temarion en PDF.📄
+                3️⃣ Enviar Temario en PDF.📄
                 4️⃣ Audio explicando el Curso.🎧
                 5️⃣ Video de Introducción.⏯️
                 6️⃣ Hablar con un Representante.🙋🏻‍♂️🙋🏼‍♀️
@@ -178,6 +180,17 @@ def send_wsp_message(message, phone_number):
                 "longitude": "<longitude>",
                 "name": "<name>",
                 "address": "<address>"
+            }
+        }
+    elif "3" in message:
+        data = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": phone_number,
+            "type": "document",
+            "document": {
+                "link": "<url>",
+                "caption": "Sample PDF"
             }
         }
 
