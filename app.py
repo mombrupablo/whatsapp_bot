@@ -166,15 +166,15 @@ def send_wsp_message(message, phone_number):
             "text": {
                 "preview_url": False,
                 "body": """🚀 Hola, como estás? Bienvenido!.
-                \nPor favor indica el número de opción para obtener información:
-                \n1️⃣ Información del Curso.❓ 
-                \n2️⃣ Ubicación del Local.📍
-                \n3️⃣ Enviar Temarion en PDF.📄
-                \n4️⃣ Audio explicando el Curso.🎧
-                \n5️⃣ Video de Introducción.⏯️
-                \n6️⃣ Hablar con un Representante.🙋🏻‍♂️🙋🏼‍♀️
-                \n7️⃣ Horario de Atención.⏱️
-                \n8️⃣ Volver al Menú.↩️
+                Por favor indica el número de opción para obtener información:
+                1️⃣ Información del Curso.❓ 
+                2️⃣ Ubicación del Local.📍
+                3️⃣ Enviar Temarion en PDF.📄
+                4️⃣ Audio explicando el Curso.🎧
+                5️⃣ Video de Introducción.⏯️
+                6️⃣ Hablar con un Representante.🙋🏻‍♂️🙋🏼‍♀️
+                7️⃣ Horario de Atención.⏱️
+                8️⃣ Volver al Menú.↩️
                 """
             }
         }
@@ -199,9 +199,9 @@ def send_wsp_message(message, phone_number):
         response = connection.getresponse()
         response_body = response.read().decode('utf-8')
         # print(f"********* HTTP Response: {response_body}", flush=True)
-        add_log_message(response.status)
-        add_log_message(response.reason)
-        add_log_message(response_body)
+        # add_log_message(response.status)
+        # add_log_message(response.reason)
+        # add_log_message(response_body)
         # print(f"******** Response Status: {response.status}", flush=True)
         # print(f"******** Response Reason: {response.reason}", flush=True)
     except Exception as e:
