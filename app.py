@@ -221,7 +221,7 @@ def send_wsp_message(message, phone_number):
             "messaging_product": "whatsapp",
             "recipient_type": "individual",
             "to": phone_number,
-            "type": "video",
+            "type": "text",
             "video": {
                 "preview_url": False,
                 "body": """Nuestros horarios de atención son:
