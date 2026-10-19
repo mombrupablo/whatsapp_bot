@@ -304,6 +304,7 @@ def send_wsp_message(message, phone_number):
 
     data = json.dumps(data)
     data = data.encode('utf-8')
+    add_log_message(data)
     # print(f"******** Data sent: {data}", flush=True)
 
     header = {
@@ -321,11 +322,11 @@ def send_wsp_message(message, phone_number):
         # print(f"******** Inside try ************", flush=True)
         connection.request("POST", "/v25.0/1407042512488552/messages", data, header)
         response = connection.getresponse()
-        response_body = response.read().decode('utf-8')
+        # response_body = response.read().decode('utf-8')
         # print(f"********* HTTP Response: {response_body}", flush=True)
-        # add_log_message(response.status)
-        # add_log_message(response.reason)
-        add_log_message(response_body)
+        add_log_message(response.status)
+        add_log_message(response.reason)
+        # add_log_message(response_body)
         # print(f"******** Response Status: {response.status}", flush=True)
         # print(f"******** Response Reason: {response.reason}", flush=True)
     except Exception as e:
