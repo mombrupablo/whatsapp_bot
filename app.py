@@ -177,9 +177,10 @@ def send_wsp_message(message, phone_number):
         connection.request("POST", "/v25.0/1407042512488552/messages", data, header)
         response = connection.getresponse()
         response_body = response.read().decode('utf-8')
-        print(f"********* HTTP Response: {response_body}", flush=True)
-        # add_log_message(response.status)
-        # add_log_message(response.reason)
+        # print(f"********* HTTP Response: {response_body}", flush=True)
+        add_log_message(response.status)
+        add_log_message(response.reason)
+        add_log_message(response_body)
         # print(f"******** Response Status: {response.status}", flush=True)
         # print(f"******** Response Reason: {response.reason}", flush=True)
     except Exception as e:
