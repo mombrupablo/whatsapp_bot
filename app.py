@@ -304,7 +304,7 @@ def send_wsp_message(message, phone_number):
 
     data = json.dumps(data)
     data = data.encode('utf-8')
-    add_log_message(data)
+    # add_log_message(data)
     # print(f"******** Data sent: {data}", flush=True)
 
     header = {
