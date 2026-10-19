@@ -135,7 +135,7 @@ def send_wsp_message(message, phone_number):
     message = message.lower()
 
     data = {}
-    if "hola" in message or "8" in message:
+    if "hola" in message or "0" in message:
         data = {
             "messaging_product": "whatsapp",
             "recipient_type": "individual",
@@ -146,16 +146,16 @@ def send_wsp_message(message, phone_number):
                 "body": """
                 🚀 Hola, como estás? Bienvenido!.
 
-                Por favor indica el número de opción para obtener información:
-                1️⃣ Información del Curso.❓
-                2️⃣ Ubicación del Local.📍
-                3️⃣ Enviar Temario en PDF.📄
-                4️⃣ Audio explicando el Curso.🎧
-                5️⃣ Video de Introducción.⏯️
-                6️⃣ Hablar con un Representante.🙋🏻‍♂️🙋🏼‍♀️
-                7️⃣ Horario de Atención.⏱️
-                8️⃣ Volver al Menú.↩️
-                """
+            Por favor indica el número de opción para obtener información:
+            1️⃣ Información del Curso.❓
+            2️⃣ Ubicación del Local.📍
+            3️⃣ Enviar Temario en PDF.📄
+            4️⃣ Audio explicando el Curso.🎧
+            5️⃣ Video de Introducción.⏯️
+            6️⃣ Hablar con un Representante.🙋🏻‍♂️🙋🏼‍♀️
+            7️⃣ Horario de Atención.⏱️
+            0️⃣ Volver al Menú.↩️
+            """
             }
         }
     elif "1" in message:
@@ -203,7 +203,6 @@ def send_wsp_message(message, phone_number):
                 "link": "https://file-examples.com/storage/fe557d50296ad628796165d/2017/11/file_example_MP3_1MG.mp3",
                 "voice": True
             }
-
         }
     elif "5" in message:
         data = {
@@ -214,6 +213,17 @@ def send_wsp_message(message, phone_number):
             "video": {
                 "link": "https://file-examples.com/storage/fe557d50296ad628796165d/2017/04/file_example_MP4_480_1_5MG.mp4",
                 "caption": "Video del Curso"
+            }
+        }
+    elif "6" in message:
+        data = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": phone_number,
+            "type": "text",
+            "text": {
+                "preview_url": False,
+                "body": """En breve nos contactaremos con vos 📡"""
             }
         }
     elif "7" in message:
@@ -227,7 +237,6 @@ def send_wsp_message(message, phone_number):
                 "body": """Nuestros horarios de atención son: Lun a Vie: 8 a 15 y Sab: 8 a 12"""
             }
         }
-
 
     data = json.dumps(data)
     data = data.encode('utf-8')
