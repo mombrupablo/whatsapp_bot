@@ -135,7 +135,7 @@ def send_wsp_message(message, phone_number):
     message = message.lower()
 
     data = {}
-    if "hola" in message:
+    if "hola" in message or "8" in message:
         data = {
             "messaging_product": "whatsapp",
             "recipient_type": "individual",
@@ -147,7 +147,7 @@ def send_wsp_message(message, phone_number):
                 🚀 Hola, como estás? Bienvenido!.
 
                 Por favor indica el número de opción para obtener información:
-                1️⃣ Información del Curso.❓ 
+                1️⃣ Información del Curso.❓
                 2️⃣ Ubicación del Local.📍
                 3️⃣ Enviar Temario en PDF.📄
                 4️⃣ Audio explicando el Curso.🎧
@@ -189,10 +189,48 @@ def send_wsp_message(message, phone_number):
             "to": phone_number,
             "type": "document",
             "document": {
-                "link": "https://drive.google.com/drive/u/0/folders/1iZ3eUooieeWtVWA9rnFXueyJsmrWiY97",
-                "caption": "Sample PDF"
+                "link": "https://file-examples.com/storage/fe557d50296ad628796165d/2017/10/file-sample_150kB.pdf",
+                "caption": "Curso PDF"
             }
         }
+    elif "4" in message:
+        data = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": phone_number,
+            "type": "audio",
+            "audio": {
+                "link": "https://file-examples.com/storage/fe557d50296ad628796165d/2017/11/file_example_MP3_1MG.mp3",
+                "voice": True
+            }
+
+        }
+    elif "5" in message:
+        data = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": phone_number,
+            "type": "video",
+            "video": {
+                "link": "https://file-examples.com/storage/fe557d50296ad628796165d/2017/04/file_example_MP4_480_1_5MG.mp4",
+                "caption": "Video del Curso"
+            }
+        }
+    elif "7" in message:
+        data = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": phone_number,
+            "type": "video",
+            "video": {
+                "preview_url": False,
+                "body": """Nuestros horarios de atención son:
+                        Lun a Vie: 8 a 15
+                        Sab: 8 a 12"""
+            }
+        }
+
+
 
     data = json.dumps(data)
     data = data.encode('utf-8')
