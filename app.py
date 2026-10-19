@@ -168,7 +168,7 @@ def send_wsp_message(message, phone_number):
                 "preview_url": False,
                 "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Irure aliqua libero"
             }
-        }   
+        }
     elif "2" in message:
         data = {
             "messaging_product": "whatsapp",
@@ -222,12 +222,11 @@ def send_wsp_message(message, phone_number):
             "recipient_type": "individual",
             "to": phone_number,
             "type": "text",
-            "video": {
+            "text": {
                 "preview_url": False,
                 "body": """Nuestros horarios de atención son: Lun a Vie: 8 a 15 y Sab: 8 a 12"""
             }
         }
-
 
 
     data = json.dumps(data)
