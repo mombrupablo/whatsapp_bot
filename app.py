@@ -165,7 +165,17 @@ def send_wsp_message(message, phone_number):
             "type": "text",
             "text": {
                 "preview_url": False,
-                "body": "🚀 Hola, como estás? Bienvenido!.\nPor favor indica la opción:\n💬1.Hablar\n📳2.Llamar\n🚪3.Huir"
+                "body": """🚀 Hola, como estás? Bienvenido!.
+                \nPor favor indica el número de opción para obtener información:
+                \n1️⃣ Información del Curso.❓ 
+                \n2️⃣ Ubicación del Local.📍
+                \n3️⃣ Enviar Temarion en PDF.📄
+                \n4️⃣ Audio explicando el Curso.🎧
+                \n5️⃣ Video de Introducción.⏯️
+                \n6️⃣ Hablar con un Representante.🙋🏻‍♂️🙋🏼‍♀️
+                \n7️⃣ Horario de Atención.⏱️
+                \n8️⃣ Volver al Menú.↩️
+                """
             }
         }
     data = json.dumps(data)
