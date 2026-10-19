@@ -224,9 +224,7 @@ def send_wsp_message(message, phone_number):
             "type": "text",
             "video": {
                 "preview_url": False,
-                "body": """Nuestros horarios de atención son:
-                        Lun a Vie: 8 a 15
-                        Sab: 8 a 12"""
+                "body": """Nuestros horarios de atención son: Lun a Vie: 8 a 15 y Sab: 8 a 12"""
             }
         }
 
