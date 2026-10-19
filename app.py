@@ -111,6 +111,7 @@ def receive_message(req):
             if "type" in message_object:
                 msg_type = message_object["type"]
                 # print(f"******* Message Type: {msg_type} *******", flush=True)
+                add_log_message(message_object)
                 if msg_type == "interactive":
                     return 0
                 if msg_type == "text":
@@ -121,7 +122,7 @@ def receive_message(req):
                         phone_number = from_number.replace("9", "", 1)
                         # print(f"******* From number: {phone_number} *******", flush=True)
                         # add_log_message(json.dumps(message, ensure_ascii=False))
-                        add_log_message(message)
+                        # add_log_message(message)
                         # add_log_message(json.dumps(from_number, ensure_ascii=False))
                         # add_log_message(from_number)
                         send_wsp_message(message, phone_number)
