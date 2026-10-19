@@ -146,6 +146,17 @@ def send_wsp_message(message, phone_number):
                 "body": "🚀 Hola, como estás? Bienvenido!"
             }
         }
+    elif "1" in message:
+        data = {
+            "messaging_product": "whatsapp",   
+            "recipient_type": "individual",
+            "to": phone_number,
+            "type": "text",
+            "text": {
+                "preview_url": False,
+                "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Irure aliqua libero"
+            }
+        }    
     else:
         data = {
             "messaging_product": "whatsapp",
