@@ -137,28 +137,6 @@ def send_wsp_message(message, phone_number):
     data = {}
     if "hola" in message:
         data = {
-            "messaging_product": "whatsapp",   
-            "recipient_type": "individual",
-            "to": phone_number,
-            "type": "text",
-            "text": {
-                "preview_url": False,
-                "body": "🚀 Hola, como estás? Bienvenido!"
-            }
-        }
-    elif "1" in message:
-        data = {
-            "messaging_product": "whatsapp",   
-            "recipient_type": "individual",
-            "to": phone_number,
-            "type": "text",
-            "text": {
-                "preview_url": False,
-                "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Irure aliqua libero"
-            }
-        }    
-    else:
-        data = {
             "messaging_product": "whatsapp",
             "recipient_type": "individual",
             "to": phone_number,
@@ -178,6 +156,31 @@ def send_wsp_message(message, phone_number):
                 """
             }
         }
+    elif "1" in message:
+        data = {
+            "messaging_product": "whatsapp",   
+            "recipient_type": "individual",
+            "to": phone_number,
+            "type": "text",
+            "text": {
+                "preview_url": False,
+                "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Irure aliqua libero"
+            }
+        }   
+    elif "2" in message:
+        data = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": phone_number,
+            "type": "location",
+            "location": {
+                "latitude": "-34.457146883363045",
+                "longitude": "-58.883724346443834",
+                "name": "La Campiña Barrio Privado",
+                "address": "Las Glicinas 1600"
+            }
+        }
+
     data = json.dumps(data)
     data = data.encode('utf-8')
     # print(f"******** Data sent: {data}", flush=True)
