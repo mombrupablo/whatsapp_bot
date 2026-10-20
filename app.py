@@ -113,7 +113,16 @@ def receive_message(req):
                 # print(f"******* Message Type: {msg_type} *******", flush=True)
                 add_log_message(message_object)
                 if msg_type == "interactive":
-                    return 0
+                    if "interactive" in message_object:
+                        interactive = message_object["interactive"]
+                        type = interactive["type"]
+                        if type == "button_reply":
+                            btn_reply = type["button_reply"]
+                            add_log_message(btn_reply)
+                            btn_id = btn_reply["id"]
+                            add_log_message(btn_id)
+                            btn_title = btn_reply["title"]
+                            add_log_message(btn_title)
                 if msg_type == "text":
                     if "text" in message_object:
                         message = message_object["text"]["body"]
