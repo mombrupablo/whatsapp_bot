@@ -117,13 +117,12 @@ def receive_message(req):
                             add_log_message(message)
                             btn_title = btn_reply["title"]
                             add_log_message(btn_title)
-                if msg_type == "text":
+                elif msg_type == "text":
                     if "text" in message_object:
                         message = message_object["text"]["body"]
                         # from_number = message_object["from"]
                         phone_number = from_number.replace("9", "", 1)
                 send_wsp_message(message, phone_number)
-
         return jsonify({"message": "EVENT_RECEIVED"}), 200
     except Exception as e:
         return jsonify({"message": "EVENT_RECEIVED"}), 200
@@ -135,6 +134,7 @@ def send_wsp_message(message, phone_number):
 
     data = {}
     if message == "btnsi":
+        add_log_message("Entered in message == btnsi")
         data = {
             "messaging_product": "whatsapp",
             "recipient_type": "individual",
