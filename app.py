@@ -100,6 +100,7 @@ def receive_message(req):
         changes = entry["changes"][0]
         value = changes["value"]
         message_object = value["messages"][0]
+        add_log_message(message_object)
         if message_object:
             if "type" in message_object:
                 from_number = message_object["from"]
