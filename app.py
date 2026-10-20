@@ -133,19 +133,7 @@ def send_wsp_message(message, phone_number):
     add_log_message(message)
 
     data = {}
-    if message == "btnsi":
-        add_log_message("Entered in message == btnsi")
-        data = {
-            "messaging_product": "whatsapp",
-            "recipient_type": "individual",
-            "to": phone_number,
-            "type": "text",
-            "text": {
-                "preview_url": False,
-                "body": """Seleccionaste el botón Si, correcto?"""
-            }
-        }
-    elif "hola" in message or "0" in message:
+    if "hola" in message or "0" in message:
         data = {
             "messaging_product": "whatsapp",
             "recipient_type": "individual",
@@ -288,6 +276,19 @@ def send_wsp_message(message, phone_number):
                 }
             }
         }
+    elif "btnsi" in message:
+        add_log_message("Entered in message == btnsi")
+        data = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": phone_number,
+            "type": "text",
+            "text": {
+                "preview_url": False,
+                "body": "Seleccionaste el botón Si, correcto?"
+            }
+        }
+        add_log_message(data)
     else:
         data = {
             "messaging_product": "whatsapp",
