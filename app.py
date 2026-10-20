@@ -97,14 +97,17 @@ def receive_message(req):
     try:
         rt = req.get_json()
         entry = rt["entry"][0]
+        add_log_message(entry)
         changes = entry["changes"][0]
+        add_log_message(changes)
         value = changes["value"]
+        add_log_message(value)
         message_object = value["messages"][0]
         add_log_message(message_object)
         if message_object:
             if "type" in message_object:
                 from_number = message_object["from"]
-                add_log_message(from_number)
+                # add_log_message(from_number)
                 msg_type = message_object["type"]
                 add_log_message(message_object)
                 if msg_type == "interactive":
