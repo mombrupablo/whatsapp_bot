@@ -122,7 +122,7 @@ def receive_message(req):
                         add_log_message(type)
                         if type == "button_reply":
                             add_log_message("Entered into type == button_reply If")
-                            btn_reply = type["button_reply"]
+                            btn_reply = interactive["button_reply"]
                             add_log_message(btn_reply)
                             btn_id = btn_reply["id"]
                             add_log_message(btn_id)
