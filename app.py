@@ -284,7 +284,7 @@ def send_wsp_message(message, phone_number):
             "type": "text",
             "text": {
                 "preview_url": False,
-                "body": """Seleccionaste el botón SI, correcto?"""
+                "body": """Seleccionaste el botón Si, correcto?"""
             }
         }
     else:
