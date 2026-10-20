@@ -131,6 +131,7 @@ def receive_message(req):
 
 def send_wsp_message(message, phone_number):
     message = message.lower()
+    add_log_message(message)
 
     data = {}
     if "hola" in message or "0" in message:
