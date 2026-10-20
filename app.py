@@ -276,6 +276,17 @@ def send_wsp_message(message, phone_number):
                 }
             }
         }
+    elif message == "btnsi":
+        data = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": phone_number,
+            "type": "text",
+            "text": {
+                "preview_url": False,
+                "body": """Seleccionaste el botón SI, correcto?"""
+            }
+        }
     else:
         data = {
             "messaging_product": "whatsapp",
