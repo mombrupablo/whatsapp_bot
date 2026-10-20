@@ -108,12 +108,13 @@ def receive_message(req):
                 add_log_message(message_object)
                 if msg_type == "interactive":
                     if "interactive" in message_object:
+                        phone_number = from_number
                         interactive = message_object["interactive"]
                         type = interactive["type"]
                         if type == "button_reply":
                             btn_reply = interactive["button_reply"]
-                            btn_id = btn_reply["id"]
-                            add_log_message(btn_id)
+                            message = btn_reply["id"]
+                            add_log_message(message)
                             btn_title = btn_reply["title"]
                             add_log_message(btn_title)
                 if msg_type == "text":
@@ -121,7 +122,7 @@ def receive_message(req):
                         message = message_object["text"]["body"]
                         # from_number = message_object["from"]
                         phone_number = from_number.replace("9", "", 1)
-                        send_wsp_message(message, phone_number)
+                send_wsp_message(message, phone_number)
 
         return jsonify({"message": "EVENT_RECEIVED"}), 200
     except Exception as e:
