@@ -236,6 +236,7 @@ def send_wsp_message(message, phone_number):
             }
         }
     elif "button" in message:
+        add_log_message("Entered in 'button in message'")
         data = {
             "messaging_product": "whatsapp",
             "recipient_type": "individual",
@@ -285,10 +286,33 @@ def send_wsp_message(message, phone_number):
             "type": "text",
             "text": {
                 "preview_url": False,
-                "body": "Seleccionaste el botón Si, correcto?"
+                "body": "Que bueno!!, Avancemos...."
             }
         }
-        add_log_message(data)
+    elif "btnno" in message:
+        add_log_message("Entered in message == btnno")
+        data = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": phone_number,
+            "type": "text",
+            "text": {
+                "preview_url": False,
+                "body": "Es una lástima........"
+            }
+        }
+    elif "btntv" in message:
+        add_log_message("Entered in message == btntv")
+        data = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": phone_number,
+            "type": "text",
+            "text": {
+                "preview_url": False,
+                "body": "Quedamos a la espera. Animate!"
+            }
+        }
     else:
         data = {
             "messaging_product": "whatsapp",
@@ -333,8 +357,8 @@ def send_wsp_message(message, phone_number):
         # print(f"******** Inside try ************", flush=True)
         connection.request("POST", "/v25.0/1407042512488552/messages", data, header)
         response = connection.getresponse()
-        response_body = response.read().decode('utf-8')
-        print(f"********* HTTP Response: {response_body}", flush=True)
+        # response_body = response.read().decode('utf-8')
+        # print(f"********* HTTP Response: {response_body}", flush=True)
         # add_log_message(response.status)
         # add_log_message(response.reason)
         # add_log_message(response_body)
