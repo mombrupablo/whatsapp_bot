@@ -1,0 +1,18 @@
+{
+    "context": {
+        "from": "{bot_phone_number}",
+        "id": "wamid.HBgNNTQ5MTE2OTk2ODIwNBUCABEYEjU5NTREREUzRkRBRDgyQkI0MAA="
+    },
+    "from": "{recipient_phone_number}",
+    "from_user_id": "{user_id}",
+    "id": "wamid.HBgNNTQ5MTE2OTk2ODIwNBUCABIYFjNFQjAyMzZDQjA2NTg2NzU5NjdBQUYA",
+    "timestamp": "1792439811",
+    "type": "interactive",
+    "interactive": {
+        "type": "button_reply",
+        "button_reply": {
+            "id": "btnsi",
+            "title": "Si"
+        }
+    }
+}
