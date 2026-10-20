@@ -102,6 +102,8 @@ def receive_message(req):
         message_object = value["messages"][0]
         if message_object:
             if "type" in message_object:
+                from_number = message_object["from"]
+                add_log_message(from_number)
                 msg_type = message_object["type"]
                 add_log_message(message_object)
                 if msg_type == "interactive":
@@ -117,7 +119,7 @@ def receive_message(req):
                 if msg_type == "text":
                     if "text" in message_object:
                         message = message_object["text"]["body"]
-                        from_number = message_object["from"]
+                        # from_number = message_object["from"]
                         phone_number = from_number.replace("9", "", 1)
                         send_wsp_message(message, phone_number)
 
