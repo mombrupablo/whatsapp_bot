@@ -95,35 +95,21 @@ def verify_token(req):
 
 def receive_message(req):
     try:
-        # print("******* Inside function receive_message *******", flush=True)
         rt = req.get_json()
-        # print(f"******* Response Json: {rt} *******", flush=True)
-
         entry = rt["entry"][0]
-        # print(f"******* entry: {entry} *******", flush=True)
         changes = entry["changes"][0]
-        # print(f"******* changes: {changes} *******", flush=True)
         value = changes["value"]
-        # print(f"******* value: {value} *******", flush=True)
         message_object = value["messages"][0]
         if message_object:
-            # print(f"******* message: {message_object} *******", flush=True)
             if "type" in message_object:
                 msg_type = message_object["type"]
-                # print(f"******* Message Type: {msg_type} *******", flush=True)
                 add_log_message(message_object)
                 if msg_type == "interactive":
-                    add_log_message("Entered into msg_type == Interactive If")
                     if "interactive" in message_object:
-                        add_log_message("Entered into interactive in message_object If")
                         interactive = message_object["interactive"]
-                        add_log_message(interactive)
                         type = interactive["type"]
-                        add_log_message(type)
                         if type == "button_reply":
-                            add_log_message("Entered into type == button_reply If")
                             btn_reply = interactive["button_reply"]
-                            add_log_message(btn_reply)
                             btn_id = btn_reply["id"]
                             add_log_message(btn_id)
                             btn_title = btn_reply["title"]
@@ -131,14 +117,8 @@ def receive_message(req):
                 if msg_type == "text":
                     if "text" in message_object:
                         message = message_object["text"]["body"]
-                        # print(f"******* Text: {message} *******", flush=True)
                         from_number = message_object["from"]
                         phone_number = from_number.replace("9", "", 1)
-                        # print(f"******* From number: {phone_number} *******", flush=True)
-                        # add_log_message(json.dumps(message, ensure_ascii=False))
-                        # add_log_message(message)
-                        # add_log_message(json.dumps(from_number, ensure_ascii=False))
-                        # add_log_message(from_number)
                         send_wsp_message(message, phone_number)
 
         return jsonify({"message": "EVENT_RECEIVED"}), 200
