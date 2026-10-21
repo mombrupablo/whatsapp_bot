@@ -231,7 +231,6 @@ def send_wsp_message(message, phone_number):
         }
         add_log_message(message)        
     elif "button" in message:
-        add_log_message("Entered in 'button in message'")
         data = {
             "messaging_product": "whatsapp",
             "recipient_type": "individual",
@@ -273,7 +272,6 @@ def send_wsp_message(message, phone_number):
             }
         }
     elif "btnsi" in message:
-        add_log_message("Entered in message == btnsi")
         data = {
             "messaging_product": "whatsapp",
             "recipient_type": "individual",
@@ -286,7 +284,6 @@ def send_wsp_message(message, phone_number):
         }
         add_log_message(message)   
     elif "btnno" in message:
-        add_log_message("Entered in message == btnno")
         data = {
             "messaging_product": "whatsapp",
             "recipient_type": "individual",
@@ -299,7 +296,6 @@ def send_wsp_message(message, phone_number):
         }
         add_log_message(message)        
     elif "btntv" in message:
-        add_log_message("Entered in message == btntv")
         data = {
             "messaging_product": "whatsapp",
             "recipient_type": "individual",
@@ -310,7 +306,58 @@ def send_wsp_message(message, phone_number):
                 "body": "Quedamos a la espera. Animate!"
             }
         }
-        add_log_message(message)        
+        add_log_message(message)
+    elif "list" in message:
+        data = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": phone_number,
+            "type": "interactive",
+            "interactive": {
+                "type": "list",
+                "body": {
+                    "text": "Selecciona una Opción"
+                },
+                "footer": {
+                    "text": "Selecciona una de las opciones para poder ayudarte"
+                },
+                "action": {
+                    "button": "Ver Opciones",
+                    "sections": [
+                        {
+                            "title": "Compra and Venta",
+                            "rows": [
+                                {
+                                    "id": "btncompra",
+                                    "title": "Comprar",
+                                    "description": "Compra los mejores artículos de tecnología."
+                                },
+                                {
+                                    "id": "btnventa",
+                                    "title": "Vender",
+                                    "description": "Vende lo que no uses."
+                                }                                
+                            ]
+                        },
+                        {
+                            "title": "Distribución y Entrega",
+                            "rows": [
+                                {
+                                    "id": "btndir",
+                                    "title": "Local",
+                                    "description": "Puedes visitar nuestro local."
+                                },
+                                {
+                                    "id": "btnent",
+                                    "title": "Entrega",
+                                    "description": "La distribución se realiza todos los días."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
     else:
         data = {
             "messaging_product": "whatsapp",
