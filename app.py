@@ -40,13 +40,8 @@ log_messages = []
 
 # Function to add log messages to the db
 def add_log_message(msg):
-    # print("******* Inside function add_log_message *******", flush=True)
-    # print(f"******* Message: {data} *******", flush=True)
-
     # Convertimos el JSON/dict a string
     json_text = json.dumps(msg, ensure_ascii=False)
-    # print(f"******* json_text: {json_text} *******", flush=True)
-
     log_messages.append(json_text)
     new_record = Log(msg=json_text)
     db.session.add(new_record)
@@ -59,37 +54,27 @@ TOKEN_APPCODE = "PAMCODE"
 
 @app.route("/webhook", methods=['GET', 'POST'])
 def webhook():
-    # print("******* Inside function webhook *******", flush=True)
-
     if request.method == 'GET':
-        # print("******* In GET *******", flush=True)
         challenge = verify_token(request)
         return challenge
     elif request.method == 'POST':
-        # print("******* In POST *******", flush=True)
         response = receive_message(request)
         return response
 
 
 @app.route("/")
 def index():
-    # print("************ Estoy en Index ************", flush=True)
     records = Log.query.all()
     ordered_records = order_by_date_time(records)
     return render_template("index.html", records=ordered_records)
 
 
 def verify_token(req):
-    # print("******* Inside function verify_token *******", flush=True)
     token = req.args.get("hub_verify_token")
-    # print(f"******* token: {token}", flush=True)
     challenge = req.args.get("hub_challenge")
-    # print(f"******* challenge: {challenge}", flush=True)
     if challenge and token == TOKEN_APPCODE:
-        # print("******* Token verified. Returning the challenge *******", flush=True)
         return challenge
     else:
-        # print("******* Token invalid. Returning the error json *******", flush=True)
         return jsonify({"error": "Invalid Token"}), 401
 
 
@@ -113,7 +98,7 @@ def receive_message(req):
                                     text = messages["text"]
                                     if "body" in text:
                                         message = text["body"]
-                                        add_log_message(message)
+                                        # add_log_message(message)
                                         send_wsp_message(message, phone_number)
                                 elif type == "interactive":
                                     interactive = messages["interactive"]
@@ -124,7 +109,7 @@ def receive_message(req):
                                                 button_reply = interactive["button_reply"]
                                                 if "id" in button_reply:
                                                     message = button_reply["id"]
-                                                    add_log_message(message)
+                                                    # add_log_message(message)
                                                     send_wsp_message(message, phone_number)
         return jsonify({"message": "EVENT_RECEIVED"}), 200
     except Exception as e:
@@ -353,8 +338,6 @@ def send_wsp_message(message, phone_number):
 
     data = json.dumps(data)
     data = data.encode('utf-8')
-    # add_log_message(data)
-    # print(f"******** Data sent: {data}", flush=True)
 
     header = {
         "Content-Type": "application/json",
@@ -362,22 +345,16 @@ def send_wsp_message(message, phone_number):
         "Authorization": "Bearer EAAQTetXZAXtYBS064OkKRmZCiK4Vff5vpLZBZBeRvpnnWRvCthEmZAaRU3F4hL9NvXCFEoEhbFZBDTGFtiskz02dr0nDZAqZAesZCGZA4h7eYIwM416gkiiekNEfuwcAigiXMhIuYwDccQUfm6ZAOJYS3rZCASYJqjy3pQtgAjGe6708waoZBaw8sK7oN4KVXTe64HQmUMPZBpH34ZAHiaE7YMHEQfpUpfjzZAF9mGLUnOG9qVja9Eq4iBKAUb8qhE69G7CYCPi2U0FZCoUfmR3oOZBAawp8wWmwZDZD"
     }
 
-    # print(f"******** Header sent: {header}", flush=True)
     connection = http.client.HTTPSConnection("graph.facebook.com")
-    # print(f"******** Connection: {connection}", flush=True)
     # connection.set_debuglevel(1)
 
     try:
-        # print(f"******** Inside try ************", flush=True)
         connection.request("POST", "/v25.0/1407042512488552/messages", data, header)
         response = connection.getresponse()
         # response_body = response.read().decode('utf-8')
-        # print(f"********* HTTP Response: {response_body}", flush=True)
         # add_log_message(response.status)
         # add_log_message(response.reason)
         # add_log_message(response_body)
-        # print(f"******** Response Status: {response.status}", flush=True)
-        # print(f"******** Response Reason: {response.reason}", flush=True)
     except Exception as e:
         add_log_message(e)
     finally:
@@ -385,7 +362,6 @@ def send_wsp_message(message, phone_number):
 
 
 if __name__ == "__main__":
-    # print("****************** Starting Program ********************", flush=True)
     # app.run(host="0.0.0.0", port=80, debug=True)
     port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port, debug=True)
