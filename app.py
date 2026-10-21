@@ -112,7 +112,9 @@ def receive_message(req):
                 if msg_type == "interactive":
                     if "interactive" in message_object:
                         phone_number = message_object["interactive"]["from"]
+                        add_log_message(phone_number)
                         type = message_object["interactive"]["type"]
+                        add_log_message(type)
                         if type == "button_reply":
                             text = message_object["interactive"]["button_reply"]["id"]
                             phone_number = message_object["from"]
