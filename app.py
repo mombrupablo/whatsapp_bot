@@ -115,7 +115,7 @@ def receive_message(req):
                                 phone_number = from_number.replace("9", "", 1)
                                 # add_log_message(phone_number)
                                 type = messages["type"]
-                                add_log_message(type)
+                                # add_log_message(type)
                                 if type == "text":
                                     text = messages["text"]
                                     # add_log_message(text)
@@ -124,14 +124,18 @@ def receive_message(req):
                                         # add_log_message(message)
                                         send_wsp_message(message, phone_number)
                                 elif type == "interactive":
-                                    add_log_message("Entered into type == interactive")
+                                    add_log_message("Entered in type == interactive")
                                     interactive = messages["interactive"]
                                     add_log_message(interactive)
                                     if "type" in interactive:
+                                        add_log_message("Entered in type in interactive")
                                         if type == "button_reply":
-                                            if "button_replay" in interactive:
+                                            add_log_message("Entered in type == button_reply")
+                                            if "button_reply" in interactive:
+                                                add_log_message("Entered in button_reply in interactive")
                                                 button_reply = interactive["button_reply"]
                                                 if "id" in button_reply:
+                                                    add_log_message("Entered in id in button_reply")
                                                     message = button_reply["id"]
                                                     add_log_message(message)
                                                     send_wsp_message(message, phone_number)
