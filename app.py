@@ -97,47 +97,32 @@ def receive_message(req):
     try:
         message_object = req.get_json()
         if message_object:
-            add_log_message(message_object)
             if "entry" in message_object:
                 entry = message_object["entry"][0]
-                # add_log_message(entry)
                 if "changes" in entry:
                     changes = entry["changes"][0]
-                    # add_log_message(changes)
                     if "value" in changes:
                         value = changes["value"]
-                        # add_log_message(value)
                         if "messages" in value:
                             messages = value["messages"][0]
-                            # add_log_message(messages)
                             if "from" in messages and "type" in messages:
                                 from_number = messages["from"]
                                 phone_number = from_number.replace("9", "", 1)
-                                # add_log_message(phone_number)
                                 type = messages["type"]
-                                # add_log_message(type)
                                 if type == "text":
                                     text = messages["text"]
-                                    # add_log_message(text)
                                     if "body" in text:
                                         message = text["body"]
-                                        # add_log_message(message)
+                                        add_log_message(message)
                                         send_wsp_message(message, phone_number)
                                 elif type == "interactive":
-                                    add_log_message("Entered in type == interactive")
                                     interactive = messages["interactive"]
-                                    add_log_message(interactive)
                                     if "type" in interactive:
-                                        add_log_message("Entered in type in interactive")
                                         type = interactive["type"]
-                                        add_log_message(type)
                                         if type == "button_reply":
-                                            add_log_message("Entered in type == button_reply")
                                             if "button_reply" in interactive:
-                                                add_log_message("Entered in button_reply in interactive")
                                                 button_reply = interactive["button_reply"]
                                                 if "id" in button_reply:
-                                                    add_log_message("Entered in id in button_reply")
                                                     message = button_reply["id"]
                                                     add_log_message(message)
                                                     send_wsp_message(message, phone_number)
