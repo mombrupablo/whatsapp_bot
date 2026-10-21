@@ -355,7 +355,7 @@ def send_wsp_message(message, phone_number):
     header = {
         "Content-Type": "application/json",
         "Content-Length": str(len(data)),
-        "Authorization": "Bearer EAAQTetXZAXtYBS1uKXxs6ZCl6bLkiyDQs1qnFsCYUL59pFM2C2SA8vNkDSzZBRsbYvrVnncqyOZAGoTdLXztGjannGgoVmzo5adPxQV2w25Yi85ZCFZAJTSyW3A8XL8Eo9yZAWmE2b2wXuUjNHtxt8iJZCNmrq9HndLgNAhBVVRGPwrrD25ZCYPdjLEJbk9f1cVfqgV6L7cKtpZA1VAq8UgzqTyaXfppW5aFxEa5B6VKcpYQBT3qMYwQ1UbvdSAhy3zdQhQRT5IRqY6OtbkVKSDJc0wCEZD"
+        "Authorization": "Bearer EAAQTetXZAXtYBS064OkKRmZCiK4Vff5vpLZBZBeRvpnnWRvCthEmZAaRU3F4hL9NvXCFEoEhbFZBDTGFtiskz02dr0nDZAqZAesZCGZA4h7eYIwM416gkiiekNEfuwcAigiXMhIuYwDccQUfm6ZAOJYS3rZCASYJqjy3pQtgAjGe6708waoZBaw8sK7oN4KVXTe64HQmUMPZBpH34ZAHiaE7YMHEQfpUpfjzZAF9mGLUnOG9qVja9Eq4iBKAUb8qhE69G7CYCPi2U0FZCoUfmR3oOZBAawp8wWmwZDZD"
     }
 
     # print(f"******** Header sent: {header}", flush=True)
