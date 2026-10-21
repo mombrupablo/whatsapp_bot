@@ -115,6 +115,7 @@ def receive_message(req):
                                 phone_number = from_number.replace("9", "", 1)
                                 # add_log_message(phone_number)
                                 type = messages["type"]
+                                add_log_message(type)
                                 if type == "text":
                                     text = messages["text"]
                                     # add_log_message(text)
@@ -123,6 +124,7 @@ def receive_message(req):
                                         # add_log_message(message)
                                         send_wsp_message(message, phone_number)
                                 elif type == "interactive":
+                                    add_log_message("Entered into type == interactive")
                                     interactive = messages["interactive"]
                                     add_log_message(interactive)
                                     if "type" in interactive:
