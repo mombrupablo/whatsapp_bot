@@ -106,27 +106,24 @@ def receive_message(req):
         # add_log_message(message_object)
         if message_object:
             if "type" in message_object:
-                from_number = message_object["from"]
                 # add_log_message(from_number)
                 msg_type = message_object["type"]
                 add_log_message(message_object)
                 if msg_type == "interactive":
                     if "interactive" in message_object:
                         phone_number = from_number
-                        interactive = message_object["interactive"]
-                        type = interactive["type"]
+                        type = message_object["interactive"]["type"]
                         if type == "button_reply":
-                            btn_reply = interactive["button_reply"]
-                            message = btn_reply["id"]
-                            # add_log_message(message)
-                            btn_title = btn_reply["title"]
-                            # add_log_message(btn_title)
+                            text = message_object["interactive"]["button_reply"]["id"]
+                            phone_number = message_object["from"]
+                            add_log_message(text)
+                            send_wsp_message(text, phone_number)
                 elif msg_type == "text":
                     if "text" in message_object:
                         message = message_object["text"]["body"]
-                        # from_number = message_object["from"]
+                        from_number = message_object["from"]
                         phone_number = from_number.replace("9", "", 1)
-                send_wsp_message(message, phone_number)
+                        send_wsp_message(message, phone_number)
         return jsonify({"message": "EVENT_RECEIVED"}), 200
     except Exception as e:
         return jsonify({"message": "EVENT_RECEIVED"}), 200
@@ -300,7 +297,7 @@ def send_wsp_message(message, phone_number):
                 "body": "Que bueno!!, Avancemos...."
             }
         }
-        add_log_message(message)        
+        add_log_message(message)   
     elif "btnno" in message:
         add_log_message("Entered in message == btnno")
         data = {
