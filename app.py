@@ -21,7 +21,7 @@ db = SQLAlchemy(app)
 # Definition of the table for logging
 class Log(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    date_time = db.Column(db.DateTime, default=datetime.now(timezone.utc))
+    date_time = db.Column(db.DateTime, default=datetime.now())
     msg = db.Column(db.Text, nullable=False)
 
 
