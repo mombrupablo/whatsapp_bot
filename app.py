@@ -134,7 +134,6 @@ def receive_message(req):
 
 def send_wsp_message(message, phone_number):
     message = message.lower()
-    add_log_message(message)
 
     data = {}
     if "hola" in message or "0" in message:
@@ -160,6 +159,7 @@ def send_wsp_message(message, phone_number):
             """
             }
         }
+        add_log_message(message)
     elif "1" in message:
         data = {
             "messaging_product": "whatsapp",
@@ -171,6 +171,7 @@ def send_wsp_message(message, phone_number):
                 "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Irure aliqua libero"
             }
         }
+        add_log_message(message)        
     elif "2" in message:
         data = {
             "messaging_product": "whatsapp",
@@ -184,6 +185,7 @@ def send_wsp_message(message, phone_number):
                 "address": "Las Glicinas 1600"
             }
         }
+        add_log_message(message)        
     elif "3" in message:
         data = {
             "messaging_product": "whatsapp",
@@ -195,6 +197,7 @@ def send_wsp_message(message, phone_number):
                 "caption": "Curso PDF"
             }
         }
+        add_log_message(message)        
     elif "4" in message:
         data = {
             "messaging_product": "whatsapp",
@@ -206,6 +209,7 @@ def send_wsp_message(message, phone_number):
                 "voice": True
             }
         }
+        add_log_message(message)        
     elif "5" in message:
         data = {
             "messaging_product": "whatsapp",
@@ -217,6 +221,7 @@ def send_wsp_message(message, phone_number):
                 "caption": "Video del Curso"
             }
         }
+        add_log_message(message)        
     elif "6" in message:
         data = {
             "messaging_product": "whatsapp",
@@ -228,6 +233,7 @@ def send_wsp_message(message, phone_number):
                 "body": """En breve nos contactaremos con vos 📡"""
             }
         }
+        add_log_message(message)
     elif "7" in message:
         data = {
             "messaging_product": "whatsapp",
@@ -239,6 +245,7 @@ def send_wsp_message(message, phone_number):
                 "body": """Nuestros horarios de atención son: Lun a Vie: 8 a 15 y Sab: 8 a 12"""
             }
         }
+        add_log_message(message)        
     elif "button" in message:
         add_log_message("Entered in 'button in message'")
         data = {
@@ -293,6 +300,7 @@ def send_wsp_message(message, phone_number):
                 "body": "Que bueno!!, Avancemos...."
             }
         }
+        add_log_message(message)        
     elif "btnno" in message:
         add_log_message("Entered in message == btnno")
         data = {
@@ -305,6 +313,7 @@ def send_wsp_message(message, phone_number):
                 "body": "Es una lástima........"
             }
         }
+        add_log_message(message)        
     elif "btntv" in message:
         add_log_message("Entered in message == btntv")
         data = {
@@ -317,6 +326,7 @@ def send_wsp_message(message, phone_number):
                 "body": "Quedamos a la espera. Animate!"
             }
         }
+        add_log_message(message)        
     else:
         data = {
             "messaging_product": "whatsapp",
@@ -340,6 +350,7 @@ def send_wsp_message(message, phone_number):
             """
             }
         }
+        add_log_message(message)
 
     data = json.dumps(data)
     data = data.encode('utf-8')
