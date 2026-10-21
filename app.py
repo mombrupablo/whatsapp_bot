@@ -129,6 +129,8 @@ def receive_message(req):
                                     add_log_message(interactive)
                                     if "type" in interactive:
                                         add_log_message("Entered in type in interactive")
+                                        type = interactive["type"]
+                                        add_log_message(type)
                                         if type == "button_reply":
                                             add_log_message("Entered in type == button_reply")
                                             if "button_reply" in interactive:
