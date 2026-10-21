@@ -104,19 +104,22 @@ def receive_message(req):
                 if "changes" in entry:
                     changes = entry["changes"][0]
                     add_log_message(changes)
-                    if "messages" in changes:
-                        messages = changes["messages"][0]
-                        add_log_message(messages)
-                        if "from" in messages and "text" in messages:
-                            from_number = messages["from"]
-                            phone_number = from_number.replace("9", "", 1)
-                            add_log_message(phone_number)
-                            text = messages["text"]
-                            add_log_message(text)
-                            if "body" in text:
-                                message = text["body"]
-                                add_log_message(message)
-                                send_wsp_message(message, phone_number)
+                    if "value" in changes:
+                        value = changes["value"]
+                        add_log_message(value)
+                        if "messages" in value:
+                            messages = changes["messages"][0]
+                            add_log_message(messages)
+                            if "from" in messages and "text" in messages:
+                                from_number = messages["from"]
+                                phone_number = from_number.replace("9", "", 1)
+                                add_log_message(phone_number)
+                                text = messages["text"]
+                                add_log_message(text)
+                                if "body" in text:
+                                    message = text["body"]
+                                    add_log_message(message)
+                                    send_wsp_message(message, phone_number)
             elif "from" in message_object and "interactive" in message_object:
                 phone_number = message_object["from"]
                 # add_log_message(phone_number)
