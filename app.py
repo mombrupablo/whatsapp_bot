@@ -108,7 +108,7 @@ def receive_message(req):
                         value = changes["value"]
                         add_log_message(value)
                         if "messages" in value:
-                            messages = changes["messages"][0]
+                            messages = value["messages"][0]
                             add_log_message(messages)
                             if "from" in messages and "text" in messages:
                                 from_number = messages["from"]
