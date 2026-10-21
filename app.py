@@ -98,7 +98,7 @@ def receive_message(req):
         message_object = req.get_json()
         if message_object:
             add_log_message(message_object)
-            if "type" in message_object:
+            if "entry" in message_object:
                 add_log_message("Inside 'type in message_object'")
                 if "text" in message_object:
                     add_log_message("Inside 'text in message_object'")
