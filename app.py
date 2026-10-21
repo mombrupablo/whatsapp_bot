@@ -99,9 +99,11 @@ def receive_message(req):
         if message_object:
             add_log_message(message_object)
             if "type" in message_object:
+                add_log_message("Inside 'type in message_object'")
                 if "text" in message_object:
+                    add_log_message("Inside 'text in message_object'")
                     message = message_object["entry"]["changes"][0]["messages"]["text"]["body"]
-                    add_log_message(message)                    
+                    add_log_message(message)
                     from_number = message_object["entry"]["changes"][0]["messages"]["from"]
                     phone_number = from_number.replace("9", "", 1)
                     add_log_message(phone_number)
