@@ -97,13 +97,13 @@ def receive_message(req):
     try:
         rt = req.get_json()
         entry = rt["entry"][0]
-        add_log_message(entry)
+        # add_log_message(entry)
         changes = entry["changes"][0]
-        add_log_message(changes)
+        # add_log_message(changes)
         value = changes["value"]
-        add_log_message(value)
+        # add_log_message(value)
         message_object = value["messages"][0]
-        add_log_message(message_object)
+        # add_log_message(message_object)
         if message_object:
             if "type" in message_object:
                 from_number = message_object["from"]
@@ -118,9 +118,9 @@ def receive_message(req):
                         if type == "button_reply":
                             btn_reply = interactive["button_reply"]
                             message = btn_reply["id"]
-                            add_log_message(message)
+                            # add_log_message(message)
                             btn_title = btn_reply["title"]
-                            add_log_message(btn_title)
+                            # add_log_message(btn_title)
                 elif msg_type == "text":
                     if "text" in message_object:
                         message = message_object["text"]["body"]
