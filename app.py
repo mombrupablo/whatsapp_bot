@@ -110,29 +110,29 @@ def receive_message(req):
                         if "messages" in value:
                             messages = value["messages"][0]
                             # add_log_message(messages)
-                            if "from" in messages and "text" in messages:
+                            if "from" in messages and "type" in messages:
                                 from_number = messages["from"]
                                 phone_number = from_number.replace("9", "", 1)
                                 # add_log_message(phone_number)
-                                text = messages["text"]
-                                # add_log_message(text)
-                                if "body" in text:
-                                    message = text["body"]
-                                    # add_log_message(message)
-                                    send_wsp_message(message, phone_number)
-            elif "from" in message_object and "interactive" in message_object:
-                phone_number = message_object["from"]
-                add_log_message(phone_number)
-                interactive = message_object["interactive"]
-                add_log_message(interactive)
-                if "type" in interactive:
-                    type = interactive["type"]
-                    add_log_message(type)
-                    if type == "button_reply":
-                        if "button_reply" in interactive:
-                            message = interactive["button_reply"]["id"]
-                            add_log_message(message)
-                            send_wsp_message(message, phone_number)
+                                type = messages["type"]
+                                if type == "text":
+                                    text = messages["text"]
+                                    # add_log_message(text)
+                                    if "body" in text:
+                                        message = text["body"]
+                                        # add_log_message(message)
+                                        send_wsp_message(message, phone_number)
+                                elif type == "interactive":
+                                    interactive = messages["interactive"]
+                                    add_log_message(interactive)
+                                    if "type" in interactive:
+                                        if type == "button_reply":
+                                            if "button_replay" in interactive:
+                                                button_reply = interactive["button_reply"]
+                                                if "id" in button_reply:
+                                                    message = button_reply["id"]
+                                                    add_log_message(message)
+                                                    send_wsp_message(message, phone_number)
         return jsonify({"message": "EVENT_RECEIVED"}), 200
     except Exception as e:
         return jsonify({"message": "EVENT_RECEIVED"}), 200
