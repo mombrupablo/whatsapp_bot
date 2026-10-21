@@ -1,49 +1,41 @@
 {
     "object": "whatsapp_business_account",
-    "entry": 
-        [
-            {
-                "id": "1100359302723727",
-                "changes": 
-                    [
-                        {
-                            "value": 
-                                {
-                                    "messaging_product": "whatsapp",
-                                    "metadata": 
-                                        {
-                                            "display_phone_number": "15556713416",
-                                            "phone_number_id": "1407042512488552"
-                                        },
-                                    "contacts": 
-                                        [
-                                            {
-                                                "profile": 
-                                                    {
-                                                        "name": "Pablo Mombru"
-                                                    },
-                                                "wa_id": "5491169968204",
-                                                "user_id": "AR.952992327422924"
-                                            }
-                                        ],
-                                    "messages": 
-                                        [
-                                            {
-                                                "from": "5491169968204",
-                                                "from_user_id": "AR.952992327422924",
-                                                "id": "wamid.HBgNNTQ5MTE2OTk2ODIwNBUCABIYFjNFQjAwRkI0MDJGRjNBMjMzQTQ2QjQA",
-                                                "timestamp": "1792069110",
-                                                "text": 
-                                                    {
-                                                        "body": "Muchas gracias champion"
-                                                    },
-                                                "type": "text"
-                                            }
-                                        ]
+    "entry": [
+        {
+            "id": "1100359302723727",
+            "changes": [
+                {
+                    "value": {
+                        "messaging_product": "whatsapp",
+                        "metadata": {
+                            "display_phone_number": "15556713416",
+                            "phone_number_id": "1407042512488552"
+                        },
+                        "contacts": [
+                            {
+                                "profile": {
+                                    "name": "Pablo Mombru"
                                 },
-                            "field": "messages"
-                        }
-                    ]
-            }
-        ]
+                                "wa_id": "5491169968204",
+                                "user_id": "AR.952992327422924"
+                            }
+                        ],
+                        "messages": [
+                            {
+                                "from": "5491169968204",
+                                "from_user_id": "AR.952992327422924",
+                                "id": "wamid.HBgNNTQ5MTE2OTk2ODIwNBUCABIYFjNFQjAwRkI0MDJGRjNBMjMzQTQ2QjQA",
+                                "timestamp": "1792069110",
+                                "text": {
+                                    "body": "Muchas gracias champion"
+                                },
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    "field": "messages"
+                }
+            ]
+        }
+    ]
 }
