@@ -113,12 +113,13 @@ def receive_message(req):
                                                     message = button_reply["id"]
                                                     # add_log_message(message)
                                                     send_wsp_message(message, phone_number)
-                                            elif "list_reply" in interactive:
+                                        elif type == "list_reply":
+                                            if "list_reply" in interactive:
                                                 list_reply = interactive["list_reply"]
                                                 if "id" in list_reply:
                                                     message = list_reply["id"]
                                                     add_log_message(message)
-                                                    send_wsp_message(message, phone_number)                                                
+                                                    send_wsp_message(message, phone_number)
         return jsonify({"message": "EVENT_RECEIVED"}), 200
     except Exception as e:
         return jsonify({"message": "EVENT_RECEIVED"}), 200
