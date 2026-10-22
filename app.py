@@ -111,14 +111,12 @@ def receive_message(req):
                                                 button_reply = interactive["button_reply"]
                                                 if "id" in button_reply:
                                                     message = button_reply["id"]
-                                                    # add_log_message(message)
                                                     send_wsp_message(message, phone_number)
                                         elif type == "list_reply":
                                             if "list_reply" in interactive:
                                                 list_reply = interactive["list_reply"]
                                                 if "id" in list_reply:
                                                     message = list_reply["id"]
-                                                    add_log_message(message)
                                                     send_wsp_message(message, phone_number)
         return jsonify({"message": "EVENT_RECEIVED"}), 200
     except Exception as e:
@@ -367,7 +365,6 @@ def send_wsp_message(message, phone_number):
                 "body": "Muchas gracias por comprar en nuestros locales."
             }
         }
-        add_log_message(message)
     elif "btnventa" in message:
         data = {
             "messaging_product": "whatsapp",
