@@ -373,7 +373,7 @@ def send_wsp_message(message, phone_number):
             "type": "text",
             "text": {
                 "preview_url": False,
-                "body": "Que bieeeen, te animaste a vender a nuestros locales."
+                "body": "Que bieeeen, te animaste a vender tus productos."
             }
         }
     elif "btndir" in message:
@@ -384,10 +384,20 @@ def send_wsp_message(message, phone_number):
             "type": "text",
             "text": {
                 "preview_url": False,
-                "body": "Que bieeeen, te animaste a vender a nuestros locales."
+                "body": "Que bueno, podes pasar por alguno de nuestros locales más cercanos a vos."
             }
         }
-
+    elif "btnent" in message:
+        data = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": phone_number,
+            "type": "text",
+            "text": {
+                "preview_url": False,
+                "body": "Por favor confirmanos dónde querés que te entreguemos tu pedido."
+            }
+        }
     else:
         data = {
             "messaging_product": "whatsapp",
