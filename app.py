@@ -82,6 +82,7 @@ def receive_message(req):
     try:
         message_object = req.get_json()
         if message_object:
+            add_log_message(message_object)
             if "entry" in message_object:
                 entry = message_object["entry"][0]
                 if "changes" in entry:
