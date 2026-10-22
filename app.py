@@ -82,7 +82,7 @@ def receive_message(req):
     try:
         message_object = req.get_json()
         if message_object:
-            add_log_message(message_object)
+            # add_log_message(message_object)
             if "entry" in message_object:
                 entry = message_object["entry"][0]
                 if "changes" in entry:
@@ -95,6 +95,7 @@ def receive_message(req):
                                 from_number = messages["from"]
                                 phone_number = from_number.replace("9", "", 1)
                                 type = messages["type"]
+                                add_log_message(messages)
                                 if type == "text":
                                     text = messages["text"]
                                     if "body" in text:
@@ -365,6 +366,7 @@ def send_wsp_message(message, phone_number):
                 "body": "Muchas gracias por comprar en nuestros locales."
             }
         }
+        add_log_message(message)
     elif "btnventa" in message:
         data = {
             "messaging_product": "whatsapp",
