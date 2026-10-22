@@ -429,7 +429,7 @@ def send_wsp_message(message, phone_number):
     header = {
         "Content-Type": "application/json",
         "Content-Length": str(len(data)),
-        "Authorization": os.getenv("META_AUTHORIZATION_TOKEN")
+        "Authorization": "Bearer os.getenv("META_AUTHORIZATION_TOKEN")"
     }
 
     connection = http.client.HTTPSConnection("graph.facebook.com")
