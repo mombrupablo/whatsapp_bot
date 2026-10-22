@@ -1,0 +1,50 @@
+{
+    "object": "whatsapp_business_account",
+    "entry": [
+        {
+            "id": "{sender_phone_number}",
+            "changes": [
+                {
+                    "value": {
+                        "messaging_product": "whatsapp",
+                        "metadata": {
+                            "display_phone_number": "{bot_phone_number}",
+                            "phone_number_id": "{phone_number_id}"
+                        },
+                        "contacts": [
+                            {
+                                "profile": {
+                                    "name": "Pablo Mombru"
+                                },
+                                "wa_id": "{recipient_phone_number}",
+                                "user_id": "{user_id}"
+                            }
+                        ],
+                        "messages": [
+                            {
+                                "context": {
+                                    "from": "{bot_phone_number}",
+                                    "id": "<wam_id>"
+                                },
+                                "from": "{recipient_phone_number}",
+                                "from_user_id": "{user_id}",
+                                "id": "<wam_id>",
+                                "timestamp": "1792686609",
+                                "type": "interactive",
+                                "interactive": {
+                                    "type": "list_reply",
+                                    "list_reply": {
+                                        "id": "btncompra",
+                                        "title": "Comprar",
+                                        "description": "Compra los mejores artículos de tecnología."
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    "field": "messages"
+                }
+            ]
+        }
+    ]
+}
