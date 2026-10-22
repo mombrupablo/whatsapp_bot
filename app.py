@@ -117,7 +117,7 @@ def receive_message(req):
                                                 list_reply = interactive["list_reply"]
                                                 if "id" in list_reply:
                                                     message = list_reply["id"]
-                                                    # add_log_message(message)
+                                                    add_log_message(message)
                                                     send_wsp_message(message, phone_number)                                                
         return jsonify({"message": "EVENT_RECEIVED"}), 200
     except Exception as e:
