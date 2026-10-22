@@ -389,7 +389,7 @@ def send_wsp_message(message, phone_number):
     header = {
         "Content-Type": "application/json",
         "Content-Length": str(len(data)),
-        "Authorization": "Bearer EAAQTetXZAXtYBS0h3d27yI46oKjzMKmApV4snECA1TZAsouUEmZCUSuzFwZAXZAZCZC4gP9b3DfLD9GhdkpT3gg4rJMoeUZAte45I0wrZCWJJVdztn8YYZBAsnBsZCV6ZCqZBZCkdEBLbi20GDeDLG518AjJNxEoWKigfITzq651myEpofRZC6U84398SnZB4OiKfAfTreb00Fg2zuwlhWwNpZAogVw1RWps8vqA3bcZCq2GfAkLj96VOfybAOEbTf0ZBk4LyzubWqo95DX7CAms6kCX5ZBp17OzJwZDZD"
+        "Authorization": "Bearer EAAQTetXZAXtYBS6g3tznTdjG9iAXHnpVOOfU98BOlfTPHTYMVovDlTyCnzqQXnkBOeon3SvZC6CgFK2RaG9CoFYKl4NbcnJBNGDqV7E2erxOWd3w0Ow3vs4boqm2OGjhsLwMen6wg8P6P0PSxzA5aMgvUacTHcttoAdN5m1d9JjigqpWhOlOwTHzm1AUMn8hcvdJecMDlxWJM35mZAAN19rM6QcPZAU0qATlisZBft1QH4QwNXCVLmdV5Oy6ZCdXk6vpL5hrRVzBVxhvpTr5TgsAZDZD"
     }
 
     connection = http.client.HTTPSConnection("graph.facebook.com")
