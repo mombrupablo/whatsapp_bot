@@ -112,6 +112,12 @@ def receive_message(req):
                                                     message = button_reply["id"]
                                                     # add_log_message(message)
                                                     send_wsp_message(message, phone_number)
+                                            elif "list_reply" in interactive:
+                                                list_reply = interactive["list_reply"]
+                                                if "id" in list_reply:
+                                                    message = button_reply["id"]
+                                                    # add_log_message(message)
+                                                    send_wsp_message(message, phone_number)                                                
         return jsonify({"message": "EVENT_RECEIVED"}), 200
     except Exception as e:
         return jsonify({"message": "EVENT_RECEIVED"}), 200
@@ -119,7 +125,6 @@ def receive_message(req):
 
 def send_wsp_message(message, phone_number):
     message = message.lower()
-
     data = {}
     if "hola" in message or "0" in message:
         data = {
@@ -156,7 +161,6 @@ def send_wsp_message(message, phone_number):
                 "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Irure aliqua libero"
             }
         }
-        add_log_message(message)        
     elif "2" in message:
         data = {
             "messaging_product": "whatsapp",
@@ -170,7 +174,6 @@ def send_wsp_message(message, phone_number):
                 "address": "Las Glicinas 1600"
             }
         }
-        add_log_message(message)        
     elif "3" in message:
         data = {
             "messaging_product": "whatsapp",
@@ -182,7 +185,6 @@ def send_wsp_message(message, phone_number):
                 "caption": "Curso PDF"
             }
         }
-        add_log_message(message)        
     elif "4" in message:
         data = {
             "messaging_product": "whatsapp",
@@ -194,7 +196,6 @@ def send_wsp_message(message, phone_number):
                 "voice": True
             }
         }
-        add_log_message(message)        
     elif "5" in message:
         data = {
             "messaging_product": "whatsapp",
@@ -206,7 +207,6 @@ def send_wsp_message(message, phone_number):
                 "caption": "Video del Curso"
             }
         }
-        add_log_message(message)        
     elif "6" in message:
         data = {
             "messaging_product": "whatsapp",
@@ -218,7 +218,6 @@ def send_wsp_message(message, phone_number):
                 "body": """En breve nos contactaremos con vos 📡"""
             }
         }
-        add_log_message(message)
     elif "7" in message:
         data = {
             "messaging_product": "whatsapp",
@@ -230,7 +229,6 @@ def send_wsp_message(message, phone_number):
                 "body": """Nuestros horarios de atención son: Lun a Vie: 8 a 15 y Sab: 8 a 12"""
             }
         }
-        add_log_message(message)        
     elif "button" in message:
         data = {
             "messaging_product": "whatsapp",
@@ -283,7 +281,6 @@ def send_wsp_message(message, phone_number):
                 "body": "Que bueno!!, Avancemos...."
             }
         }
-        add_log_message(message)   
     elif "btnno" in message:
         data = {
             "messaging_product": "whatsapp",
@@ -295,7 +292,6 @@ def send_wsp_message(message, phone_number):
                 "body": "Es una lástima........"
             }
         }
-        add_log_message(message)        
     elif "btntv" in message:
         data = {
             "messaging_product": "whatsapp",
@@ -307,7 +303,6 @@ def send_wsp_message(message, phone_number):
                 "body": "Quedamos a la espera. Animate!"
             }
         }
-        add_log_message(message)
     elif "list" in message:
         data = {
             "messaging_product": "whatsapp",
@@ -359,6 +354,40 @@ def send_wsp_message(message, phone_number):
                 }
             }
         }
+    elif "btncompra" in message:
+        data = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": phone_number,
+            "type": "text",
+            "text": {
+                "preview_url": False,
+                "body": "Muchas gracias por comprar en nuestros locales."
+            }
+        }
+    elif "btnventa" in message:
+        data = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": phone_number,
+            "type": "text",
+            "text": {
+                "preview_url": False,
+                "body": "Que bieeeen, te animaste a vender a nuestros locales."
+            }
+        }
+    elif "btndir" in message:
+        data = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": phone_number,
+            "type": "text",
+            "text": {
+                "preview_url": False,
+                "body": "Que bieeeen, te animaste a vender a nuestros locales."
+            }
+        }
+
     else:
         data = {
             "messaging_product": "whatsapp",
@@ -390,7 +419,7 @@ def send_wsp_message(message, phone_number):
     header = {
         "Content-Type": "application/json",
         "Content-Length": str(len(data)),
-        "Authorization": "Bearer EAAQTetXZAXtYBS4QvIuea0evBVvAEtdOnX8DsELh3ycSJTZATJX9xBvGqa4sbrf1msyqxxWXOsjM3oBLLyVZAhJxE9sK1TugOMVAiFWrXQjP2jOxU4ExxlXXoEjHOktwKNyDJd3nIEcjWE1Mavog5KLTM08lsa1Y26OXb0TylUKt4H49Cyk7ZBqRihvWfbc0Of6rIuuxWY3CiHVoPZBvO6MFe9NtCunlaLZBgXHLwVhR2LbP5EEnqaLYrdehdSbZARs6xyio3NJYxBHdwHn2L5MYZCMH"
+        "Authorization": "Bearer EAAQTetXZAXtYBSZC8KGEPb2dOhqlT7NkX0VZBOcnaSFRJO34Emzg2Yy1sAy9IDBZANxszzNbD84XM0h6VRRcNIpnkn60HWJZASqmeumJousj4aHEPQ5Rwvr8noXo5QQzlg4c000YkELzePYra1ae6ZAo3qMVXHXByBqRUZBUGmZBkBuYTVMw8ZArQ8yqlerVEDvQvs72elDFrXD2zxDuB5pWov5RuekeZAc8VVNZC9Vj7nxItDyiEy2fsWmh8VcUVEUHQHZBvhVI4fdaSrfoffWmEqP8TJYZD"
     }
 
     connection = http.client.HTTPSConnection("graph.facebook.com")
