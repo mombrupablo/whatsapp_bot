@@ -106,7 +106,7 @@ def receive_message(req):
                                 from_number = messages["from"]
                                 phone_number = from_number.replace("9", "", 1)
                                 type = messages["type"]
-                                add_log_message(messages)
+                                # add_log_message(messages)
                                 if type == "text":
                                     text = messages["text"]
                                     if "body" in text:
