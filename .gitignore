@@ -4,4 +4,4 @@ __pycache__/
 docs/
 instance/
 templates/
-token_fijo.txt
+mailmap.txt
