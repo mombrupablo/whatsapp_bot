@@ -5,7 +5,15 @@ from datetime import datetime, timezone
 import http.client
 import json
 import os
+from dotenv import load_dotenv
 
+
+load_dotenv(dotenv_path="./.env")
+meta_authorization_token = os.getenv("META_AUTHORIZATION_TOKEN")
+meta_api_version = os.getenv("META_API_VERSION")
+phone_number_id = os.getenv("PHONE_NUMBER_ID")
+recipient_phone_number = os.getenv("RECIPIENT_PHONE_NUMBER")
+token_app_code = os.getenv("TOKEN_APP_CODE")
 
 app = Flask(__name__)
 
@@ -49,7 +57,7 @@ def add_log_message(msg):
 
 
 # Token for the configuration of the webhook
-TOKEN_<app_token> = "<app_token>"
+TOKEN_<app_token> = token_app_code
 
 
 @app.route("/webhook", methods=['GET', 'POST'])
@@ -72,7 +80,7 @@ def index():
 def verify_token(req):
     token = req.args.get("hub_verify_token")
     challenge = req.args.get("hub_challenge")
-    if challenge and token == TOKEN_<app_token>:
+    if challenge and token == token_app_code:
         return challenge
     else:
         return jsonify({"error": "Invalid Token"}), 401
@@ -429,14 +437,14 @@ def send_wsp_message(message, phone_number):
     header = {
         "Content-Type": "application/json",
         "Content-Length": str(len(data)),
-        "Authorization": "Bearer os.getenv("META_AUTHORIZATION_TOKEN")"
+        "Authorization": meta_authorization_token
     }
 
     connection = http.client.HTTPSConnection("graph.facebook.com")
     # connection.set_debuglevel(1)
 
     try:
-        connection.request("POST", "/v25.0/{phone_number_id}/messages", data, header)
+        connection.request("POST", f"/{meta_api_version}/{phone_number_id}/messages", data, header)
         response = connection.getresponse()
         # response_body = response.read().decode('utf-8')
         # add_log_message(response.status)
