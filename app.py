@@ -8,17 +8,18 @@ import os
 from dotenv import load_dotenv
 
 
+app = Flask(__name__)
+
+# Esto le enseña a Flask a leer los argumentos detrás del proxy de Render
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
+
+# Get envirnment variables
 load_dotenv(dotenv_path="./.env")
 meta_authorization_token = os.getenv("META_AUTHORIZATION_TOKEN")
 meta_api_version = os.getenv("META_API_VERSION")
 phone_number_id = os.getenv("PHONE_NUMBER_ID")
 recipient_phone_number = os.getenv("RECIPIENT_PHONE_NUMBER")
 token_app_code = os.getenv("TOKEN_APP_CODE")
-
-app = Flask(__name__)
-
-# Esto le enseña a Flask a leer los argumentos detrás del proxy de Render
-app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
 
 # SQLite DB Config
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///metapython.db"
