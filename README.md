@@ -84,9 +84,9 @@ The creation of the lead, will also involve the creation of a contact and an opp
 Specific number of reintent must be done by the application to ensure that the lead is created. If the creation fails after those intents, the lead must be temporarily register and persisted once the issues are solved.
 - Log all the interaction between the bot and the user.
 
----------------
-5. Second Stage
----------------
+----------
+5. Stage 2
+----------
 Once the fist stage is deployed, the following requirements must be included as part of a next stage:
 
 5.1. Administrative Panel to access all the registered information of the user.
