@@ -71,18 +71,18 @@ As the stack for this stage, I'll use:
 ------------------------------------
 4. Use Cases to consider in Stage 1:
 ------------------------------------
-4.1 Start a conversation by the user through whastapp.
+- Start a conversation by the user through whastapp: 
 A person writes a word or text and the system identifies de user's information if exists, and starts a conversation.
-4.2. The bot answers the question.
+- The bot answers the question: 
 The bot uses a flow to show an initial menu and saves the answer of the user, and continues with the next question in the flow.
-4.3. The user responds in a defined period of time.
+- The user responds in a defined period of time: 
 There will be a specific period of time for the user to respond. After that period, the bot will show the initial menu again after user's input.
-4.4. Creation of the lead in the database after the last response of the user.
+- Creation of the lead in the database after the last response of the user:
 The creation of the lead, will also involve the creation of a contact and an opportunity associated to the lead.
-4.5. Avoid duplication of leads.
-4.6. Failures in the response of the application.
+- Avoid duplication of leads.
+- Failures in the response of the application: 
 Specific number of reintent must be done by the application to ensure that the lead is created. If the creation fails after those intents, the lead must be temporarily register and persisted once the issues are solved.
-4.7. Log all the interaction between the bot and the user.
+- Log all the interaction between the bot and the user.
 
 ---------------
 5. Second Stage
