@@ -59,10 +59,6 @@ def add_log_message(msg):
     db.session.commit()
 
 
-# Token for the configuration of the webhook
-TOKEN_<app_token> = token_app_code
-
-
 @app.route("/webhook", methods=['GET', 'POST'])
 def webhook():
     if request.method == 'GET':
