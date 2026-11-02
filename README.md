@@ -48,16 +48,25 @@ The new tasks to consider are:
 - Improve the logging functionality by registering the completed interaction between the user and the bot. This includes API errors, Render errors, Python errors.
 - Add the functionality to prevent registering twice a lead or a response of the user.
 - Analyze, design and create the DB schema that will be used based on the requirements.
-- Generate documentation for:
+- Generate documentation for: 
 -- The project.
+
 -- The python's code.
+
 -- The web application.
+
 -- The database's schema, including:
+
 --- Tables.
+
 --- Primary keys.
+
 --- Foreign Keys.
+
 --- Indexes.
+
 --- Joins.
+
 --- Any other resources added to the database.
 - Ensure that the best practices for coding and database management are used.
 
@@ -88,7 +97,11 @@ Specific number of reintent must be done by the application to ensure that the l
 5. Second Stage
 ---------------
 Once the fist stage is deployed, the following requirements must be included as part of a next stage:
+
 5.1. Administrative Panel to access all the registered information of the user.
+
 5.2. Dashboard and metrics based on the CRM entities information.
+
 5.3. Editor of questions and flows.
+
 5.4. Catalog of products with prices and stocks.
