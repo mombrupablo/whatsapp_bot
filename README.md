@@ -8,26 +8,26 @@ The bot has been implemented with a basic functionality (POC). The bot responds 
 ------------------------------------
 2. The stack used to create the bot:
 ------------------------------------
-2.1. Python
+2.1. Python: 
 The code to integrate with the whatsapp API and to respond based on the input from the whatsapp user's session is in Python. The program is called app.py.
 
-2.2. Web Application
+2.2. Web Application: 
 A web application has been created using Flask. The logs information is shown in a web page through the web application.
 
-2.3. Meta Whatsapp API
+2.3. Meta Whatsapp API: 
 This is the API provided by Meta to interact with Whatsapp. To access this API, the following parameters are informed:
 - An authentication token provided by Meta. It exists in an environment variable.
 - A phone number and ID provided by Meta. This is the phone number used as the bot.
 - A destination phone number. This is my personal cell phone that acts as the requesting user.
 The three parameters are saved in environment variables, so they're not in the repository.
 
-2.4. Render Cloud Server:
+2.4. Render Cloud Server: 
 As the Meta whatsapp API requires a cloud server for the integration, I'm using Render.
 The Render server is plugged into the repository, so every commit executes a new built and deployement of the changes/new objects into the server.
 The server is already configured to allow the integration between the python's app and Meta.
 I'm currently the only user that can access and configure the Render server as well as access to the Meta app used for the integration.
 
-2.5 SQLite DB:
+2.5 SQLite DB: 
 A small DB with only one table called Log is used to register the responses from the user, no keys are saved.
 The table includes the following columns:
 - Date (Datetime)
