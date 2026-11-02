@@ -42,32 +42,23 @@ The current functionality serves as a POC. The objective of this stage is to ext
 The new tasks to consider are:
 - Define and Create a complete flow with a number of questions and different branches to collect the user's information through the bot functionality.
 - Persist the user's data as a lead to be contacted in the future. This includes the following CRM entities:
--- Lead.
--- Opportunity.
--- Contact.
+    - Lead.
+    - Opportunity.
+    - Contact.
 - Improve the logging functionality by registering the completed interaction between the user and the bot. This includes API errors, Render errors, Python errors.
 - Add the functionality to prevent registering twice a lead or a response of the user.
 - Analyze, design and create the DB schema that will be used based on the requirements.
 - Generate documentation for: 
--- The project.
-
--- The python's code.
-
--- The web application.
-
--- The database's schema, including:
-
---- Tables.
-
---- Primary keys.
-
---- Foreign Keys.
-
---- Indexes.
-
---- Joins.
-
---- Any other resources added to the database.
+    * The project.
+    * The python's code.
+    * The web application.
+    * The database's schema, including:
+        * Tables.
+        * Primary keys.
+        * Foreign Keys.
+        * Indexes.
+        * Joins.
+        * Any other resources added to the database.
 - Ensure that the best practices for coding and database management are used.
 
 As the stack for this stage, I'll use:
