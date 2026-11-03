@@ -35,9 +35,9 @@ The table includes the following columns:
 - Text (Text)
 This DB runs in the Render server and it can also run in a local environment. The DB is managed by the python's app.
 
-----------
-3. Stage 1
-----------
+--------------------------
+3. Stage 1 - Roadmap Steps
+--------------------------
 The current functionality serves as a POC. The objective of this stage is to extend the current functionality to a CRM context.
 The new tasks to consider are:
 - Define and Create a complete flow with a number of questions and different branches to collect the user's information through the bot functionality.
@@ -84,9 +84,9 @@ The creation of the lead, will also involve the creation of a contact and an opp
 Specific number of reintent must be done by the application to ensure that the lead is created. If the creation fails after those intents, the lead must be temporarily register and persisted once the issues are solved.
 - Log all the interaction between the bot and the user.
 
-----------
-5. Stage 2
-----------
+--------------------------
+5. Stage 2 - Roadmap Steps
+--------------------------
 Once the fist stage is deployed, the following requirements must be included as part of a next stage:
 
 5.1. Administrative Panel to access all the registered information of the user.
