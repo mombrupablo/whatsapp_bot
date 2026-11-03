@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from werkzeug.middleware.proxy_fix import ProxyFix  # <-- Requerido para Gunicorn en Render
+from werkzeug.middleware.proxy_fix import ProxyFix  # <-- Needed for Gunicorn in Render
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timezone
 import http.client
@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 
 app = Flask(__name__)
 
-# Esto le enseña a Flask a leer los argumentos detrás del proxy de Render
+# Make Flask be able to read the arguments behind the Render's proxy
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
 
 
@@ -41,7 +41,7 @@ with app.app_context():
     db.create_all()
 
 
-# Order the records by a field
+# Order the records by a datetime
 def order_by_date_time(records):
     return sorted(records, key=lambda x: x.date_time, reverse=True)
 
@@ -51,7 +51,7 @@ log_messages = []
 
 # Function to add log messages to the db
 def add_log_message(msg):
-    # Convertimos el JSON/dict a string
+    # Convert JSON/dict to string
     json_text = json.dumps(msg, ensure_ascii=False)
     log_messages.append(json_text)
     new_record = Log(msg=json_text)
@@ -59,6 +59,7 @@ def add_log_message(msg):
     db.session.commit()
 
 
+# Function to access the Meta's webhook
 @app.route("/webhook", methods=['GET', 'POST'])
 def webhook():
     if request.method == 'GET':
@@ -69,6 +70,7 @@ def webhook():
         return response
 
 
+# Function to access to the index web page
 @app.route("/")
 def index():
     records = Log.query.all()
@@ -76,6 +78,7 @@ def index():
     return render_template("index.html", records=ordered_records)
 
 
+# Function to validate the parameters returned by Meta's webhook
 def verify_token(req):
     token = req.args.get("hub_verify_token")
     challenge = req.args.get("hub_challenge")
@@ -85,6 +88,7 @@ def verify_token(req):
         return jsonify({"error": "Invalid Token"}), 401
 
 
+# Function to receive the message returned by the API from Meta
 def receive_message(req):
     try:
         message_object = req.get_json()
@@ -130,6 +134,8 @@ def receive_message(req):
         return jsonify({"message": "EVENT_RECEIVED"}), 200
 
 
+# Function to receive the user's input message from whatsapp, 
+# and show the response in whatsapp depending on the input received.
 def send_wsp_message(message, phone_number):
     message = message.lower()
     data = {}
@@ -142,17 +148,17 @@ def send_wsp_message(message, phone_number):
             "text": {
                 "preview_url": False,
                 "body": """
-                🚀 Hola, como estás? Bienvenido!.
+            🚀 Hello, Welcome!.
 
-            Por favor indica el número de opción para obtener información:
-            1️⃣ Información del Curso.❓
-            2️⃣ Ubicación del Local.📍
-            3️⃣ Enviar Temario en PDF.📄
-            4️⃣ Audio explicando el Curso.🎧
-            5️⃣ Video de Introducción.⏯️
-            6️⃣ Hablar con un Representante.🙋🏻‍♂️🙋🏼‍♀️
-            7️⃣ Horario de Atención.⏱️
-            0️⃣ Volver al Menú.↩️
+            Please enter the option's number for information:
+            1️⃣ Course.❓
+            2️⃣ Address.📍
+            3️⃣ Introductory PDF.📄
+            4️⃣ Introductory audio.🎧
+            5️⃣ Introductoty video.⏯️
+            6️⃣ Talk to a representative.🙋🏻‍♂️🙋🏼‍♀️
+            7️⃣ Time's schedule.⏱️
+            0️⃣ Back to menu.↩️
             """
             }
         }
@@ -189,7 +195,7 @@ def send_wsp_message(message, phone_number):
             "type": "document",
             "document": {
                 "link": "<url>",
-                "caption": "Curso PDF"
+                "caption": "PDF Course"
             }
         }
     elif "4" in message:
@@ -211,7 +217,7 @@ def send_wsp_message(message, phone_number):
             "type": "video",
             "video": {
                 "link": "<url>",
-                "caption": "Video del Curso"
+                "caption": "Video of the Course"
             }
         }
     elif "6" in message:
@@ -222,7 +228,7 @@ def send_wsp_message(message, phone_number):
             "type": "text",
             "text": {
                 "preview_url": False,
-                "body": """En breve nos contactaremos con vos 📡"""
+                "body": "We will contact you shortly 📡"""
             }
         }
     elif "7" in message:
@@ -233,7 +239,9 @@ def send_wsp_message(message, phone_number):
             "type": "text",
             "text": {
                 "preview_url": False,
-                "body": """Nuestros horarios de atención son: Lun a Vie: 8 a 15 y Sab: 8 a 12"""
+                "body": """We're open at 
+                - Mon to Fri, from 8 AM to 3 PM.
+                - Sat from, 8 AM a 12 PM"""
             }
         }
     elif "button" in message:
@@ -245,10 +253,10 @@ def send_wsp_message(message, phone_number):
             "interactive": {
                 "type": "button",
                 "body": {
-                    "text": "Confirmas tu registro?"
+                    "text": "Do you confirm the record?"
                 },
                 "footer": {
-                    "text": "Selecciona una de las opciones"
+                    "text": "Please select one of the options"
                 },
                 "action": {
                     "buttons": [
@@ -256,7 +264,7 @@ def send_wsp_message(message, phone_number):
                             "type": "reply",
                             "reply": {
                                 "id": "btnsi",
-                                "title": "Si"
+                                "title": "Yes"
                             }
                         },
                         {
@@ -270,7 +278,7 @@ def send_wsp_message(message, phone_number):
                             "type": "reply",
                             "reply": {
                                 "id": "btntv",
-                                "title": "Tal Vez"
+                                "title": "Maybe"
                             }
                         }
                     ]
@@ -285,7 +293,7 @@ def send_wsp_message(message, phone_number):
             "type": "text",
             "text": {
                 "preview_url": False,
-                "body": "Que bueno!!, Avancemos...."
+                "body": "Excellent!!, Let's move on...."
             }
         }
     elif "btnno" in message:
@@ -296,7 +304,7 @@ def send_wsp_message(message, phone_number):
             "type": "text",
             "text": {
                 "preview_url": False,
-                "body": "Es una lástima........"
+                "body": "Sorry for that........"
             }
         }
     elif "btntv" in message:
@@ -307,7 +315,7 @@ def send_wsp_message(message, phone_number):
             "type": "text",
             "text": {
                 "preview_url": False,
-                "body": "Quedamos a la espera. Animate!"
+                "body": "You can reach out whenever you want. Thank you"
             }
         }
     elif "list" in message:
@@ -319,41 +327,41 @@ def send_wsp_message(message, phone_number):
             "interactive": {
                 "type": "list",
                 "body": {
-                    "text": "Selecciona una Opción"
+                    "text": "Please select an option"
                 },
                 "footer": {
-                    "text": "Selecciona una de las opciones para poder ayudarte"
+                    "text": "Select one of the option so we can help you"
                 },
                 "action": {
-                    "button": "Ver Opciones",
+                    "button": "See options",
                     "sections": [
                         {
-                            "title": "Compra and Venta",
+                            "title": "Buy and Sell",
                             "rows": [
                                 {
                                     "id": "btncompra",
-                                    "title": "Comprar",
-                                    "description": "Compra los mejores artículos de tecnología."
+                                    "title": "Buy",
+                                    "description": "You can purchase the best of electronic products"
                                 },
                                 {
                                     "id": "btnventa",
-                                    "title": "Vender",
-                                    "description": "Vende lo que no uses."
+                                    "title": "Sell",
+                                    "description": "Sell what you don't need or use."
                                 }                                
                             ]
                         },
                         {
-                            "title": "Distribución y Entrega",
+                            "title": "Distribution and Delivery",
                             "rows": [
                                 {
                                     "id": "btndir",
-                                    "title": "Local",
-                                    "description": "Puedes visitar nuestro local."
+                                    "title": "Store",
+                                    "description": "You can visit our store anytime."
                                 },
                                 {
                                     "id": "btnent",
-                                    "title": "Entrega",
-                                    "description": "La distribución se realiza todos los días."
+                                    "title": "Delivery",
+                                    "description": "We delivery products everyday."
                                 }
                             ]
                         }
@@ -369,7 +377,7 @@ def send_wsp_message(message, phone_number):
             "type": "text",
             "text": {
                 "preview_url": False,
-                "body": "Muchas gracias por comprar en nuestros locales."
+                "body": "Thank you for buying in our stores."
             }
         }
     elif "btnventa" in message:
@@ -380,7 +388,7 @@ def send_wsp_message(message, phone_number):
             "type": "text",
             "text": {
                 "preview_url": False,
-                "body": "Que bieeeen, te animaste a vender tus productos."
+                "body": "Great!, let's sale your products."
             }
         }
     elif "btndir" in message:
@@ -391,7 +399,7 @@ def send_wsp_message(message, phone_number):
             "type": "text",
             "text": {
                 "preview_url": False,
-                "body": "Que bueno, podes pasar por alguno de nuestros locales más cercanos a vos."
+                "body": "Great!, you can visit us in any of our stores near to you."
             }
         }
     elif "btnent" in message:
@@ -402,7 +410,7 @@ def send_wsp_message(message, phone_number):
             "type": "text",
             "text": {
                 "preview_url": False,
-                "body": "Por favor confirmanos dónde querés que te entreguemos tu pedido."
+                "body": "Please confirm where you want your products to be delivered."
             }
         }
     else:
@@ -414,17 +422,17 @@ def send_wsp_message(message, phone_number):
             "text": {
                 "preview_url": False,
                 "body": """
-                🚀 Hola, como estás? Bienvenido!.
+            🚀 Hello, Welcome!.
 
-            Por favor indica el número de opción para obtener información:
-            1️⃣ Información del Curso.❓
-            2️⃣ Ubicación del Local.📍
-            3️⃣ Enviar Temario en PDF.📄
-            4️⃣ Audio explicando el Curso.🎧
-            5️⃣ Video de Introducción.⏯️
-            6️⃣ Hablar con un Representante.🙋🏻‍♂️🙋🏼‍♀️
-            7️⃣ Horario de Atención.⏱️
-            0️⃣ Volver al Menú.↩️
+            Please enter the option's number for information:
+            1️⃣ Course.❓
+            2️⃣ Address.📍
+            3️⃣ Introductory PDF.📄
+            4️⃣ Introductory audio.🎧
+            5️⃣ Introductoty video.⏯️
+            6️⃣ Talk to a representative.🙋🏻‍♂️🙋🏼‍♀️
+            7️⃣ Time's schedule.⏱️
+            0️⃣ Back to menu.↩️
             """
             }
         }
@@ -459,5 +467,3 @@ if __name__ == "__main__":
     # app.run(host="0.0.0.0", port=80, debug=True)
     port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port, debug=True)
-    # En producción:
-    # serve(app, host='0.0.0.0', port=port)

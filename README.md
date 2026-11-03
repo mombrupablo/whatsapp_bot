@@ -96,3 +96,12 @@ Once the fist stage is deployed, the following requirements must be included as 
 5.3. Editor of questions and flows.
 
 5.4. Catalog of products with prices and stocks.
+
+---------------
+IMPORTANT NOTES
+---------------
+- The POC is not currently based on CRM functionality. It's just a POC to be extended and improved.
+- No personal data is used, just test data.
+- All the sensitive information exist on environment variables in an .env file that does not exist in the repository.
+- I'm acting as the only user. No other users are involved.
+- As CRM information I'll use test data, and no sensitive data will be used or saved from myself or any other person.
