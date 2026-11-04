@@ -75,7 +75,8 @@ def webhook():
 def index():
     records = Log.query.all()
     ordered_records = order_by_date_time(records)
-    return render_template("index.html", records=ordered_records)
+    print(ordered_records, flush=True)
+    return render_template("bot_index.html", records=ordered_records)
 
 
 # Function to validate the parameters returned by Meta's webhook

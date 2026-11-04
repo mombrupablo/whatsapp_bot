@@ -3,6 +3,5 @@ __pycache__/
 .env
 docs/
 instance/
-templates/
-mailmap.txt
-transformations.txt
+bulk_bot_index.html
+bulk_bot.py
