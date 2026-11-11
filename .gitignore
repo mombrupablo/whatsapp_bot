@@ -3,5 +3,5 @@ __pycache__/
 .env
 docs/
 instance/
-bulk_bot_index.html
-bulk_bot.py
+logs/
+plugins/
